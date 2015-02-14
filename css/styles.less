@@ -19,7 +19,14 @@
 .left (@num) {
   left: @outside-padding + @num * @grid;
 }
+.right (@num) {
+  right: @outside-padding + @num * @grid;
+}
 
+.scrollable {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
 
 
 @font-face {
@@ -186,58 +193,89 @@ h2 {
     .top(0);
     width: 10em;
   }
-}
-
-.menuIcon {
-  .icon {
-    font-size: 3em;
-    line-height: 0.8;
-  }
-  
-
-  
-  .icon, 
-  .icon:before,
-  .icon:after {
-    cursor: pointer;
-    border-radius: 1px;
-    height: 5px;
-    width: 35px;
-    background: white;
-    position: absolute;
-    display: block;
-    content: '';
-    top: 10px;
-  }
-  .icon:before {
-    top: -10px;
-  }
-  .icon:after {
-    bottom: -10px; 
-  }
-  .icon, .text {
-    position: relative;
-  }
-    
-  .text {
-    top: 25px;
-    font-size: 1em;
+  .menuIcon {
+    .icon {
+      font-size: 3em;
+      line-height: 0.8;
+    }
+    .icon, 
+    .icon:before,
+    .icon:after {
+      cursor: pointer;
+      border-radius: 1px;
+      height: 5px;
+      width: 35px;
+      background: white;
+      position: absolute;
+      display: block;
+      content: '';
+      top: 10px;
+    }
+    .icon:before {
+      top: -10px;
+    }
+    .icon:after {
+      bottom: -10px; 
+    }
+    .icon, .text {
+      position: relative;
+    }
+      
+    .text {
+      top: 25px;
+      font-size: 1em;
+    }
   }
 }
-
 
 .text {
+  .scrollable;
   position: absolute;
   .left(3);
-  .cols(10);
+  .cols(2);
   .top(1);
   margin: 0em;
-  height: 400px;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
+  height: 900px;
+
 }
 
-.gridItem {
-  .cols(3);
-  .rows(4);
+.gridView {
+  .scrollable;
+  left: @grid;
+  .top(0);
+  position: absolute;
+  .gridItem {
+    position: relative;
+    overflow: hidden;
+    width: 1024 - @grid;
+    transition: height 0.5s;
+    .rows(4);
+    
+    img {
+      width: 1024 - @grid;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    .gridText {
+      .right(0);
+      .cols(3);
+      .top(0);
+      position: absolute;
+      padding: @innerPadding;
+      background: @white;
+      z-index: 2;
+    }
+    
+
+  }
+  &.focus {
+    .gridItem {
+      height: 0;
+    }
+    .gridItem.focus {
+      height: 90vh;
+    }
+  }
 }

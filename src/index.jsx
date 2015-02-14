@@ -15,13 +15,7 @@ var menuItems = [
 var fillText = 'Vergeblich, großherziger Kublai, werde ich versuchen, dir die Stadt Zaira mit ihren hohen Bastionen zu beschreiben. Ich könnte dir sagen, wie viele Stufen die treppenförmigen Straßen haben, welche Wölbung die Bögen der Arkaden, mit was für';
 
 var projects = [
-  {
-    author: 'Eric Reh',
-    city: 'Perinthia',
-    text: fillText,
-    image: 'IMG_0015.png',
-    landscape: false
-  },
+
   {
     author: 'Dom Okah',
     city: 'Perinthia',
@@ -29,6 +23,7 @@ var projects = [
     image: 'IMG_0012.png',
     landscape: true
   },
+  
   {
     author: 'Lorenz',
     city: 'Unknown',
@@ -40,9 +35,16 @@ var projects = [
     author: 'Wiebke Helmchen',
     city: 'Chloe',
     text: fillText,
-    image: 'IMG_0013.png',
+    image: 'IMG_0011.png',
     landscape: true
-  }
+  },
+  {
+    author: 'Eric Reh',
+    city: 'Perinthia',
+    text: fillText,
+    image: 'IMG_0015.png',
+    landscape: false
+  },
 ];
 
 var appTitle = "Die Unsichtbaren Städte"
@@ -57,7 +59,7 @@ var App = React.createClass({
         </Swipeable>
         <Swipeable className="fullscreenPage" onSwiped={this.handleSwipe}>
             <Menu list={menuItems} title={appTitle}/>
-            <GridView projects={projects}/>
+            <Text projects={projects}/>
         </Swipeable>
       </div>
     );
