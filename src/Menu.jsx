@@ -5,7 +5,7 @@ var MenuIcon = React.createClass({
   render: function() {
     return (
       <div className='menuIcon'>
-        <div className='icon'>&#8801;</div>
+        <div className='icon'></div>
         <span className='text'>Menu</span>
       </div>
     );
@@ -45,8 +45,9 @@ var Menu = React.createClass({
     
     return (
       <Swipeable onSwiped={this.handleSwipe}>
-        <div className={classes} >
+        <div className={classes} onClick={this.toggle}>
           <MenuIcon />
+          <h1 className='appTitle'>{this.props.title}</h1>
           <div className='currentTitle'>{this.state.activeTitle}</div>
           <MenuList list={this.props.list}/>
         </div>
@@ -61,7 +62,11 @@ var Menu = React.createClass({
       });
       e.stopPropagation();
     }
-    
+  },
+  toggle: function() {
+    this.setState({
+      expanded: !this.state.expanded
+    });
   }
 });
 

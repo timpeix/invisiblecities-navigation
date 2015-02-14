@@ -66,7 +66,7 @@ gulp.task('webserver', function() {
 
 
 gulp.task('copy', function() {
-  gulp.src(['index.html', 'assets/*'])
+  gulp.src(['index.html', 'assets/*', 'content/*'])
   .pipe(gulp.dest('./dist'))
   .pipe(connect.reload());
 });

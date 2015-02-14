@@ -8,6 +8,9 @@
 .cols (@num) {
   width: @num * @grid;
 }
+.rows (@num) {
+  height: @num * @grid;
+}
 
 .top (@num) {
   top: @outside-padding + @num * @grid;
@@ -45,6 +48,8 @@
 
 * {
   box-sizing: border-box;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 html,
 body {
@@ -60,7 +65,7 @@ body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
-  letter-spacing: 0.015em;
+  //letter-spacing: 0.015em;
   text-rendering: optimizeLegibility;
   //bottom: 0;
   overflow: hidden;
@@ -129,25 +134,33 @@ h2 {
   z-index: 10;
   position: absolute;
   height: 100vh;
-  
+  overflow: hidden;
   transition: width 0.5s;
-  
+  transition-timing-function: ease-in-out;
+  box-shadow: 2px 0px 4px 0px rgba(50, 50, 50, 0.25);
   &.collapsed  {
     .cols(1);
-    ul {
+    ul, .appTitle {
       opacity: 0;
     }
   }
   
   &.expanded  {
     .cols(6);
-    .currentTitle {
+    .currentTitle, .menuIcon {
       opacity: 0;
     }
   }
   
-  ul, .currentTitle {
-    transition: opacity 0.5s;
+  ul, .currentTitle, .menuIcon, .appTitle {
+    transition: opacity 0.25s;
+  }
+  
+  li {
+    list-style: none;
+    font-size: 1.4em;
+    margin: 0;
+    padding: 0;
   }
   
   .currentTitle {
@@ -158,28 +171,73 @@ h2 {
     transform: rotate(-90deg);
     transform-origin: 10 10;
   }
+  
+  ul {
+    position: absolute;
+    left: @outside-padding;
+    .top(1.5);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .appTitle {
+    position: absolute;
+    left: @outside-padding;
+    .top(0);
+    width: 10em;
+  }
 }
 
 .menuIcon {
   .icon {
     font-size: 3em;
     line-height: 0.8;
-    -webkit-font-smoothing: none;
   }
+  
+
+  
+  .icon, 
+  .icon:before,
+  .icon:after {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 5px;
+    width: 35px;
+    background: white;
+    position: absolute;
+    display: block;
+    content: '';
+    top: 10px;
+  }
+  .icon:before {
+    top: -10px;
+  }
+  .icon:after {
+    bottom: -10px; 
+  }
+  .icon, .text {
+    position: relative;
+  }
+    
   .text {
-    font-size: 0.8em;
+    top: 25px;
+    font-size: 1em;
   }
 }
 
 
-.fill {
+.text {
   position: absolute;
-  top: 0;
-  left: 0;
   .left(3);
   .cols(10);
+  .top(1);
   margin: 0em;
   height: 400px;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.gridItem {
+  .cols(3);
+  .rows(4);
 }
