@@ -54,12 +54,13 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
+
          <Swipeable className="fullscreenPage" onSwiped={this.handleSwipe}>
           <Cover title={appTitle} subtitle="Zeichnungen + Interaktionen"/>
         </Swipeable>
         <Swipeable className="fullscreenPage" onSwiped={this.handleSwipe}>
             <Menu list={menuItems} title={appTitle}/>
-            <Text projects={projects}/>
+                  <GridView projects={projects}/>
         </Swipeable>
       </div>
     );
@@ -68,9 +69,13 @@ var App = React.createClass({
     console.log(e, x, y, flick);
     if (flick && y > 0 && Math.abs(y) > Math.abs(x)) {
       document.body.className='page1';
+      e.preventDefault();
+      e.stopPropagation();
     }
     if (flick && y < 0 && Math.abs(y) > Math.abs(x)) {
       document.body.className='page0';
+      e.preventDefault();
+      e.stopPropagation();
     }
   }
 })

@@ -29,10 +29,12 @@ var GridItem = React.createClass({
     var classes = cx({
       'gridItem': true,
       'landscape': this.props.landscape,
-      'focus': this.state.focus
+      'focus': this.state.focus,
+      'beforeFocus': this.state.before,
+      'afterFocus': this.state.after,
     });
     return (
-      <div className={classes} >
+      <div className={classes} onClick={this.focus}>
         <div className='author'>{this.props.author}</div>
         <img src={this.props.image}/>
         <div className='gridText'>{this.props.text}</div>
@@ -75,10 +77,15 @@ var GridView = React.createClass({
     );
   },
   removeAllFocus: function(except) {
+    var found = false
     for (var i in this.refs) {
+      var isExcept = (except == this.refs[i]);
       this.refs[i].setState({
-        focus: (except == this.refs[i])
+        before: (!found && !isExcept && except),
+        after: (found && except),
+        focus: isExcept
       });
+      if (isExcept) found = true;
     }
     this.setState({
       focus: !!(except)
