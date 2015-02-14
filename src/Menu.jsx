@@ -5,7 +5,8 @@ var MenuIcon = React.createClass({
   render: function() {
     return (
       <div className='menuIcon'>
-        Menu
+        <div className='icon'>&#8801;</div>
+        <span className='text'>Menu</span>
       </div>
     );
   }

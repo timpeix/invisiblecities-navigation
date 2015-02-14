@@ -3,6 +3,7 @@
 
 @outside-padding: 36px;
 @grid: 68px;
+@innerPadding: @grid / 4;
 
 .cols (@num) {
   width: @num * @grid;
@@ -124,11 +125,11 @@ h2 {
 
 .menu {
   .whiteOnAubergine;
-  padding: @grid/4;
-  
+  padding: @innerPadding;
   z-index: 10;
-  
+  position: absolute;
   height: 100vh;
+  
   transition: width 0.5s;
   
   &.collapsed  {
@@ -146,21 +147,29 @@ h2 {
   }
   
   ul, .currentTitle {
-        transition: opacity 0.5s;
+    transition: opacity 0.5s;
   }
   
   .currentTitle {
     font-size: 2em;
     position: absolute;
     bottom: 0px;
+    left: @innerPadding - 2;
     transform: rotate(-90deg);
     transform-origin: 10 10;
-
   }
-  
-  
 }
 
+.menuIcon {
+  .icon {
+    font-size: 3em;
+    line-height: 0.8;
+    -webkit-font-smoothing: none;
+  }
+  .text {
+    font-size: 0.8em;
+  }
+}
 
 
 .fill {
