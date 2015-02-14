@@ -1,0 +1,176 @@
+@aubergine: #7f545c;
+@white: #fff;
+
+@outside-padding: 36px;
+@grid: 68px;
+
+.cols (@num) {
+  width: @num * @grid;
+}
+
+.top (@num) {
+  top: @outside-padding + @num * @grid;
+}
+
+.left (@num) {
+  left: @outside-padding + @num * @grid;
+}
+
+
+
+@font-face {
+    font-family: 'Diktator';
+    src: url('./weissenseediktatorsemibold-webfont.woff2') format('woff2'),
+         url('./weissenseediktatorsemibold-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+// @font-face {
+//     font-family: 'Diktator';
+//     src: url('./weissenseediktatorlight-webfont.woff2') format('woff2'),
+//          url('./weissenseediktatorlight-webfont.woff') format('woff');
+//     font-weight: 100;
+//     font-style: normal;
+// }
+
+// html {
+//   height: 1600px!important;
+//   overflow: scroll;
+//   background: red;
+// }
+// 
+// html{ bottom: 0;padding:0;margin:0}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+    overflow: hidden;
+}
+
+body {
+  // position: fixed;
+  // left: 0;
+  // top: 100px;
+  font-family: 'Diktator';
+  font-size: @grid / 4;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.015em;
+  text-rendering: optimizeLegibility;
+  //bottom: 0;
+  overflow: hidden;
+  height: 100vh;
+
+}
+
+
+
+
+h1, h2, h3, h4 {
+  font-weight: 400;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2em;
+  text-indent: -0.05em;
+}
+
+h2 {
+  font-size: 0.8em;
+}
+
+.whiteOnAubergine {
+  background: @aubergine;
+  color: @white;
+}
+
+.fullscreenPage {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  transition: transform 0.5s;
+}
+
+.page0 .fullscreenPage {
+  transform: translateY(0vh);
+}
+
+.page1 .fullscreenPage {
+  transform: translateY(-100vh);
+}
+
+.cover {
+  .whiteOnAubergine;
+  .fullscreenPage;
+
+  
+  h1, h2 {
+    position: absolute;
+    .cols(5);
+    .left(0);
+  }
+  h1 {
+    .top(9);
+  }
+  h2 {
+    .top(9.5);
+  }
+}
+
+.menu {
+  .whiteOnAubergine;
+  padding: @grid/4;
+  
+  z-index: 10;
+  
+  height: 100vh;
+  transition: width 0.5s;
+  
+  &.collapsed  {
+    .cols(1);
+    ul {
+      opacity: 0;
+    }
+  }
+  
+  &.expanded  {
+    .cols(6);
+    .currentTitle {
+      opacity: 0;
+    }
+  }
+  
+  ul, .currentTitle {
+        transition: opacity 0.5s;
+  }
+  
+  .currentTitle {
+    font-size: 2em;
+    position: absolute;
+    bottom: 0px;
+    transform: rotate(-90deg);
+    transform-origin: 10 10;
+
+  }
+  
+  
+}
+
+
+
+.fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  .left(3);
+  .cols(10);
+  margin: 0em;
+  height: 400px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
