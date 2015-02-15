@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var Swipeable = require('react-swipeable');
+var Link = require('react-router').Link;
 
 var MenuIcon = React.createClass({
   render: function() {
@@ -47,6 +48,7 @@ var Menu = React.createClass({
     });
     
     return (
+      <Link to="cover">
       <Swipeable onSwiped={this.handleSwipe}>
         <div className={classes} onClick={this.toggle}>
           <MenuIcon />
@@ -55,6 +57,7 @@ var Menu = React.createClass({
           <MenuList list={this.props.list}/>
         </div>
       </Swipeable>
+    </Link>
     );
   },
   handleSwipe: function (e, x, y, flick) {

@@ -8,7 +8,7 @@ var Cover = React.createClass({
   render: function() {
     return (
      <Swipeable className="fullscreenPage" onSwiped={this.go} ref="cover">
-       <Link to="content">
+       <Link to="projects">
             <div className='cover' onClick={this.go}>
               <h1>{strings.App.title}</h1>
               <h2>{strings.App.subtitle}</h2>

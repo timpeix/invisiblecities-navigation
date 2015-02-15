@@ -35,9 +35,9 @@ var App = React.createClass({
 
 var routes = (
   <Route handler={App} path="/">
-    <DefaultRoute handler={Cover} />
+    <DefaultRoute name="cover" handler={Cover} />
     <Route name="content" handler={Content}>
-      
+      <Route name="projects" handler={Projects} />
     </Route>
   </Route>
 );
