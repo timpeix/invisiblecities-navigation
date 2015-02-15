@@ -39,10 +39,10 @@ var projects = [
     landscape: true
   },
   {
-    author: 'Eric Reh',
+    author: 'Ilya Barret',
     city: 'Perinthia',
     text: fillText,
-    image: 'IMG_0015.png',
+    image: 'IMG_0016.png',
     landscape: false
   },
 ];
@@ -60,7 +60,7 @@ var App = React.createClass({
         </Swipeable>
         <Swipeable className="fullscreenPage" onSwiped={this.handleSwipe}>
             <Menu list={menuItems} title={appTitle}/>
-                  <GridView projects={projects}/>
+            <GridView projects={projects} ref="gridView"/>
         </Swipeable>
       </div>
     );
@@ -73,6 +73,7 @@ var App = React.createClass({
       e.stopPropagation();
     }
     if (flick && y < 0 && Math.abs(y) > Math.abs(x)) {
+      //console.log(this.refs.gridView.getDOMNode().scrollTop)
       document.body.className='page0';
       e.preventDefault();
       e.stopPropagation();
