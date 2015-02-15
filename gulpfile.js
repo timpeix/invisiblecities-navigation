@@ -10,6 +10,13 @@ var server = require('gulp-server-livereload');
 var rename = require("gulp-rename");
 var connect = require('gulp-connect');
 var plumber = require('gulp-plumber');
+var deploy = require('gulp-gh-pages');
+
+// GH pages
+gulp.task('deploy', function () {
+    return gulp.src('./dist/**/*')
+        .pipe(deploy());
+});
 
 // Hack to enable configurable watchify watching
 var watching = false;
