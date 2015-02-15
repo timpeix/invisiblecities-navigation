@@ -3,6 +3,7 @@
   "dependencies": {
     "gulp": "^3.8.11",
     "react": "^0.12.2",
+    "react-router": "^0.12.0",
     "react-swiper": "^0.1.4"
   },
   "devDependencies": {
