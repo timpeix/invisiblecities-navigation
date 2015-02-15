@@ -16,15 +16,18 @@ var MenuList = React.createClass({
   render: function() {
     var listNodes = this.props.list.map(function(item) {
       return (
-        <li>{item}</li>
+        <li onClick={this.handleClick} ref={item}>{item}</li>
       );
-    })
+    }, this);
     
     return (
       <ul>
         {listNodes}
       </ul>
     );
+  },
+  handleClick: function(e) {
+    console.log(e);
   }
 });
 
