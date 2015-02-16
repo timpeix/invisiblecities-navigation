@@ -17,7 +17,7 @@ var Content = React.createClass({
   render: function() {
       return (
         <div>
-          <Menu list={menuItems} title={strings.App.title} onContentChange={this.contentChange}/>
+          <Menu list={menuItems} title={strings.App.title} />
           <RouteHandler/>
         </div>
       );

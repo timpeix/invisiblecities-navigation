@@ -27,15 +27,6 @@ zum hundertsten Mal die Geschichte vom Kanonenboot des
 Usurpators erzählen, der, wie es heißt, ein uneheliches Kind
 der Königin gewesen und in Windeln hier auf der Mole ausgesetzt
 worden sein soll.
-Mit dieser Welle, die aus den Erinnerungen zurückfließt,
-saugt die Stadt sich voll wie ein Schwamm und breitet sich
-aus. Eine Beschreibung von Zaira, wie es heute ist, müßte die
-ganze Vergangenheit von Zaira enthalten. Aber die Stadt erzählt
-ihre Vergangenheit nicht, sie enthält sie wie die Linien
-einer Hand, eingeschrieben in die Ränder der Straßen, die
-Gitter der Fenster, die Handläufe der Treppengeländer, die
-Antennen der Blitzableiter, die Masten der Fahnen, jedes Segment
-seinerseits schraffiert von Kratzern, Sägespuren, Kerben
 und Schlägen.
       </div>
     );

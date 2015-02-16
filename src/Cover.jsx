@@ -24,20 +24,9 @@ var Cover = React.createClass({
   },
   go:  function (e, x, y, flick) {
     
-    
-        console.log(e, x, y, flick);
-        if (flick && y > 0 && Math.abs(y) > Math.abs(x)) {
-          this.transitionTo('projects');
-        
-          e.preventDefault();
-          e.stopPropagation();
-        }
-        if (flick && y < 0 && Math.abs(y) > Math.abs(x)) {
-          console.log(this.refs.gridView.getDOMNode().scrollTop)
-          document.body.className='page0';
-          e.preventDefault();
-          e.stopPropagation();
-        }
+    if (e.type == 'click' || (flick && y > 0 && Math.abs(y) > Math.abs(x))) {
+      this.transitionTo('projects');
+    }
   
 
   }

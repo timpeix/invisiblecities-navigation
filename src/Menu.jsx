@@ -3,6 +3,8 @@ var Swipeable = require('react-swipeable');
 var Link = require('react-router').Link;
 var strings = require('./strings')
 
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 var MenuIcon = React.createClass({
   render: function() {
     return (

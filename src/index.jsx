@@ -23,23 +23,27 @@ var App = React.createClass({
     mixins: [ Router.State ],
 
   render: function () {
-        var name = this.getRoutes().reverse()[0].name;
-
     return (
       <TransitionGroup component="div" transitionName="horizontal">
-          <RouteHandler key={name}/>
+          <RouteHandler key={this.getTopHandlerKey()} />
       </TransitionGroup>
     );
-  }
+  },
+  getTopHandlerKey: function () {
+    var childDepth = 1;
+    var childName = this.getRoutes()[childDepth].name;
+    console.log(childName);
+    return childName;
+  },
 });
 
 
 var routes = (
   <Route handler={App} path="/">
-    <DefaultRoute name="cover" handler={Cover} addHandlerKey={true} />
+    <DefaultRoute name="cover" handler={Cover}/>
     <Route name="content" handler={Content}>
-      <Route name="projects" handler={Projects} addHandlerKey={true} />
-      <Route name="preface" handler={Preface} addHandlerKey={true} />
+      <Route name="projects" handler={Projects}/>
+      <Route name="preface" handler={Preface}/>
     </Route>
   </Route>
 );
