@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var Swipeable = require('react-swipeable');
 var Link = require('react-router').Link;
+var strings = require('./strings')
 
 var MenuIcon = React.createClass({
   render: function() {
@@ -15,11 +16,11 @@ var MenuIcon = React.createClass({
 
 var MenuList = React.createClass({
   render: function() {
-    var listNodes = this.props.list.map(function(item) {
+    var listNodes = strings.Menu.map(function(item) {
       return (
-        <li onClick={this.handleClick} ref={item}>{item}</li>
+        <li><Link to={item.destination}>{item.name}</Link></li>
       );
-    }, this);
+    });
     
     return (
       <ul>
@@ -48,16 +49,13 @@ var Menu = React.createClass({
     });
     
     return (
-      <Link to="cover">
       <Swipeable onSwiped={this.handleSwipe}>
-        <div className={classes} onClick={this.toggle}>
+        <div className={classes} onClick={this.toggle} >
           <MenuIcon />
           <h1 className='appTitle'>{this.props.title}</h1>
-          <div className='currentTitle'>{this.state.activeTitle}</div>
           <MenuList list={this.props.list}/>
         </div>
       </Swipeable>
-    </Link>
     );
   },
   handleSwipe: function (e, x, y, flick) {

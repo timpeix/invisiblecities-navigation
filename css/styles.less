@@ -77,6 +77,12 @@ body {
 
 }
 
+a {
+  color: inherit;
+  border: 0;
+  text-decoration: none;
+}
+
 html {
   overflow: hidden;
 }
@@ -104,7 +110,9 @@ h2 {
 .fullscreenPage {
   width: 100vw;
   height: 100vh;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left:0;
   transition: transform 0.5s;
 }
 
@@ -135,8 +143,8 @@ h2 {
 }
 
 .menu {
+  top: 0;
   .whiteOnAubergine;
-  padding: @innerPadding;
   z-index: 10;
   position: absolute;
   height: 100vh;
@@ -146,8 +154,20 @@ h2 {
   box-shadow: 2px 0px 4px 0px rgba(50, 50, 50, 0.25);
   &.collapsed  {
     .cols(1);
-    ul, .appTitle {
-      opacity: 0;
+    ul li a, .appTitle {
+      display: none;
+    }
+    ul .active {
+      display: block;
+    }
+    ul .active {
+        font-size: 2em;
+        position: absolute;
+        bottom: 0px;
+        left: @innerPadding - 2;
+        transform: rotate(-90deg);
+        transform-origin: 10 10;
+        width: 15em;
     }
   }
   
@@ -164,26 +184,22 @@ h2 {
   
   li {
     list-style: none;
-    font-size: 1.4em;
+    
     margin: 0;
     padding: 0;
   }
-  
-  .currentTitle {
-    font-size: 2em;
-    position: absolute;
-    bottom: 0px;
-    left: @innerPadding - 2;
-    transform: rotate(-90deg);
-    transform-origin: 10 10;
+  li a {
+    font-size: 1.4em;
   }
+  
+
   
   ul {
-    position: absolute;
-    left: @outside-padding;
-    .top(1.5);
-    margin: 0;
+    //position: absolute;
+    margin: @outside-padding;
+    margin-top: @outside-padding + 1.5 * @grid;
     padding: 0;
+    width: 12em;
   }
   
   .appTitle {
@@ -193,6 +209,8 @@ h2 {
     width: 10em;
   }
   .menuIcon {
+    margin: @innerPadding;
+    position: absolute;
     .icon {
       font-size: 3em;
       line-height: 0.8;
@@ -289,4 +307,33 @@ h2 {
       z-index: 2;
     }
   }
+}
+
+
+
+.noTranslate{
+  transform: translate(0,0);
+  transition: transform 2s ;
+}
+
+.horizontal-leave {
+  display: block;
+  position: absolute;
+  transform: translate(0,0);
+  transition: transform 50s ;
+}
+
+.horizontal-leave-active {
+  transform: translate(0, -100vh);
+}
+
+.horizontal-enter {
+  display: block;
+  transition: transform 50s ;
+  transform: translate(0, 100vh);
+  
+}
+
+.horizontal-enter-active {
+  transform: translate(0, 0vh);
 }
