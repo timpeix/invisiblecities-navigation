@@ -231,8 +231,8 @@ h2 {
 .gridView .gridItem .block {
   top: 0;
   padding: 17px;
-  height: 60vh;
   right: 0;
+  height: 30vh;
   width: 306px;
   position: absolute;
   background: #e3d5d8;
@@ -653,7 +653,8 @@ h2 {
   left: 478px;
   width: 408px;
 }
-.focus .gridItemWrapper {
+.focus .gridItemWrapper,
+.focus .gridItem .block {
   height: 8vh;
 }
 .gridItemWrapper {
@@ -664,6 +665,13 @@ h2 {
 .transitioning .gridItemWrapper {
   overflow: visible;
 }
-.gridItem.focus .gridItemWrapper {
+.transitioning .gridItem .block {
   height: 60vh;
+}
+.gridItem.focus .gridItemWrapper,
+.gridItem.focus .block {
+  height: 60vh;
+}
+.author {
+  display: inline;
 }
