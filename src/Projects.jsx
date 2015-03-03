@@ -14,7 +14,6 @@ var projects = [
     landscape: true,
     path: 'dom'
   },
-  
   {
     author: 'Lorenz',
     city: 'Unknown',
@@ -45,15 +44,28 @@ var projects = [
     city: 'Perinthia',
     text: fillText,
     image: './eric.png',
-    landscape: false
+    landscape: true,
+    specialRotate: true,
+    path: 'eric'
   },
   {
     author: 'Eric Zeh',
     city: 'Perinthia',
     text: fillText,
     image: './eric.png',
-    landscape: false
+    landscape: true,
+    specialRotate: true,
+    path: 'eric'
   },
+  {
+    author: 'Eric Meh',
+    city: 'Perinthia',
+    text: fillText,
+    image: './eric.png',
+    landscape: true,
+    specialRotate: true,
+    path: 'eric'
+  }
 ];
 
 var Projects = React.createClass({

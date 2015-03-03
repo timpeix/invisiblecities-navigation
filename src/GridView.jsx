@@ -48,11 +48,15 @@ var GridItem = React.createClass({
       </div>
     )
   },
-  goToProject: function() {
+  goToProject: function(e) {
+    console.log(86);
+    e.preventDefault();
+    e.stopPropagation();
     var p = this.props;
     window.location.href = `thepony://o/${p.path}?landscape=${p.landscape}&specialRotate=${p.specialRotate}`;
   },
   focus: function() {
+    console.log(87);
     if (!this.state.focus) {
       this.props.parent.removeAllFocus(this);
     } else {
