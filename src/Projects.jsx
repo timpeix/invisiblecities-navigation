@@ -25,13 +25,6 @@ var projects = [
     specialRotate: true
   },
   {
-    author: 'Eric Zeh',
-    city: 'Perinthia',
-    text: fillText,
-    image: './eric.png',
-    landscape: false
-  },
-  {
     author: 'Wiebke Helmchen',
     city: 'Chloe',
     text: fillText,
@@ -55,7 +48,7 @@ var projects = [
     landscape: false
   },
   {
-    author: 'Eric Meh',
+    author: 'Eric Zeh',
     city: 'Perinthia',
     text: fillText,
     image: './eric.png',
