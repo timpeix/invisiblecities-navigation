@@ -84,6 +84,7 @@ var GridView = React.createClass({
     
     return (<div className={classes}>
       {gridNodes}
+      <div className="scrollHeight"></div>
       </div>
     );
   },

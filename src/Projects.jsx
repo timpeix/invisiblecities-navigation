@@ -40,6 +40,13 @@ var projects = [
     landscape: false,
     path: 'ilya'
   },
+  {
+    author: 'Eric Reh',
+    city: 'Perinthia',
+    text: fillText,
+    image: './eric.png',
+    landscape: false
+  },
 ];
 
 var Projects = React.createClass({

@@ -268,12 +268,12 @@ h2 {
   height: 100vh;
   .gridItem {
     box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
-    position: relative;
+    position: absolute;
     width: 1024 - @grid;
-    height: 30vh;
+    height: 60vh;
     transition: transform 0.5s;
     img {
-      width: 1024 - @grid;
+      width: 1024 - 5.5 * @grid;
       position: absolute;
       top: 0;
       left: 0;
@@ -295,7 +295,7 @@ h2 {
       padding: @innerPadding;
       height: 100%;
       right: 0;
-      .cols(3);
+      .cols(4.5);
       position: absolute;
       background: lighten(@aubergine, 45);
     }
@@ -311,26 +311,37 @@ h2 {
 /* Define two variables as the loop limits */
 @from : 0;
 @to : 20;
- 
+
+@grid-height-small: 8vh;
+@grid-height-medium: 30vh;
+@grid-height-large: 52vh;
+
+
+
 /* Create a Parametric mixin and add a guard operation */
 .loop(@index) when(@index =< @to) {
  
   /* As the mixin is called CSS is outputted */
   .gridItem:nth-child(@{index}) {
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, (@index - 1) * @grid-height-medium, 0);
   }
   
   .gridItem.beforeFocus:nth-child(@{index}) {
-    // normal = i-1*30vh
-    transform: translate3d(0, -(@index - 1) * (30vh - 8vh) ,0);
+    transform: translate3d(0, (@index - 1) * (@grid-height-small), 0);
   }
  
   .gridItem.focus:nth-child(@{index}) {
-    transform: translate3d(0,-(@index - 1) * (30vh - 8vh) ,0);
+    transform: translate3d(0, (@index - 1) * (@grid-height-small), 0);
   }
+  
   .gridItem.afterFocus:nth-child(@{index}) {
-    // normal = i-1*30vh
-    transform: translate3d(0,-(@index - 1) * (30vh - 8vh) + 72vh,0);
+    transform: translate3d(0, (@index - 1) * (@grid-height-small) + @grid-height-large, 0);
+  }
+  
+  .scrollHeight:nth-child(@{index}) {
+    width: 200px;
+height: 3000px;
+background: red;
   }
   /* Interation call and operation */
   .loop(@index + 1);
@@ -376,7 +387,7 @@ h2 {
 .gridItemWrapper {
   overflow: hidden;
   position: relative;
-  height: 30vh;
+  height: 100%;
 }
 
 .gridItem:last-child{
@@ -386,6 +397,6 @@ h2 {
 }
 .gridItem.focus {
      .gridItemWrapper{
-      height: 80vh;
+      height: 60vh;
     }
 }
