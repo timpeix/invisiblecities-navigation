@@ -268,7 +268,7 @@ h2 {
   height: 100vh;
   .gridItem {
     box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
-    //position: absolute;
+    position: absolute;
     width: 1024 - @grid;
     height: 0;
     transition: transform 0.5s;
@@ -322,7 +322,7 @@ h2 {
 .loop(@index) when(@index =< @to) {
  
   /* As the mixin is called CSS is outputted */
-  .gridItem:nth-child(@{index}) {
+  .gridItem:nth-child(@{index})  {
     transform: translate3d(0, (@index - 1) * @grid-height-medium, 0);
   }
   
@@ -337,23 +337,22 @@ h2 {
   .gridItem.afterFocus:nth-child(@{index}) {
     transform: translate3d(0, (@index - 1) * (@grid-height-small) + @grid-height-large, 0);
   }
+    
+  .gridViewWrapper.childnum@{index} {
+    height: (@index) * @grid-height-medium;
   
-  // .scrollHeight:nth-child(@{index}) {
-  //   height: (@index - 1) * @grid-height-medium;
-  //   width: 200px;
-  //   background: red;
-  //   z-index: 100;
-  //   transform: translate3d(0,0,0);
-  //   border: 15px solid;
+    // transition: height 0.5s;
+    // transition-delay: 0.5s;
+    
+  }
+  
+  .focus .gridViewWrapper.childnum@{index} {
+    height: (@index) * @grid-height-small + @grid-height-large;
+  }
+  
+  // .focus .scrollHeight:nth-child(@{index}) {
+  //   
   // }
-  //   .focus .scrollHeight:nth-child(@{index}) {
-  //     height: (@index - 1) * @grid-height-medium;
-  //     width: 200px;
-  //     background: red;
-  //     z-index: 100;
-  //     transform: translate3d(0,0,0);
-  //     border: 15px solid;
-  //   }
   /* Interation call and operation */
   .loop(@index + 1);
 }
@@ -396,30 +395,36 @@ h2 {
 }
 
 .focus .gridItemWrapper {
-  overflow: hidden;
-  // position: relative;
-  height: 8vh;
+  // overflow: hidden;
+  // // position: relative;
+  // height: 8vh;
 }
 
 .gridItemWrapper {
-  overflow: hidden;
-  // position: relative;
-  height: 30vh;
+  // overflow: hidden;
+  // // position: relative;
+  height: 0vh;
   //transition: overflow 0.5s;
   //transition-delay: 0.5s;
 }
 
-.transitioning .gridItemWrapper {
-  overflow: visible;
-}
+// .transitioning .gridItemWrapper {
+//   overflow: visible;
+// }
 
-.gridItem:last-child{
-   .gridItemWrapper{
-    height: 30vh;
-  }
-}
+// .gridItem:last-child{
+//    .gridItemWrapper{
+//     height: 30vh;
+//   }
+// }
 .gridItem.focus {
      .gridItemWrapper{
       height: 60vh;
     }
+}
+
+.gridViewWrapper {
+  height: 800px;
+position: relative;
+overflow: hidden;
 }

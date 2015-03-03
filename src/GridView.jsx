@@ -77,17 +77,20 @@ var GridView = React.createClass({
       'focus': this.state.focus,
       'transitioning': this.state.transitioning
     });
+
     var gridNodes = this.props.projects.map(function(project, i) {
       return (
         <GridItem ref={i} key={project.author} parent={this} {...project} />
       );
     }, this);
     
+    var numClass = 'gridViewWrapper childnum' + gridNodes.length;
+    
     this.gridItems = gridNodes;
     
-    return (<div className={classes}>
+    return (<div className={classes}><div className={numClass}>
       {gridNodes}
-      <div className="scrollHeight"></div>
+      <div className="scrollHeight"></div></div>
       </div>
     );
   },
@@ -109,7 +112,7 @@ var GridView = React.createClass({
     this.setState({
       focus: !!(except)
     })
-    this.getDOMNode().scrollTop = 0;
+    //this.getDOMNode().scrollTop = 0;
   },
   setTransitioning: function (bool) {
     this.setState({
