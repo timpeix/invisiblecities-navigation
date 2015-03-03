@@ -268,13 +268,13 @@ h2 {
   height: 100vh;
   .gridItem {
     box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
-    position: absolute;
+    //position: absolute;
     width: 1024 - @grid;
-    height: 60vh;
+    height: 0;
     transition: transform 0.5s;
     img {
       width: 1024 - 5.5 * @grid;
-      position: absolute;
+      //position: absolute;
       top: 0;
       left: 0;
     }
@@ -338,11 +338,22 @@ h2 {
     transform: translate3d(0, (@index - 1) * (@grid-height-small) + @grid-height-large, 0);
   }
   
-  .scrollHeight:nth-child(@{index}) {
-    width: 200px;
-height: 3000px;
-background: red;
-  }
+  // .scrollHeight:nth-child(@{index}) {
+  //   height: (@index - 1) * @grid-height-medium;
+  //   width: 200px;
+  //   background: red;
+  //   z-index: 100;
+  //   transform: translate3d(0,0,0);
+  //   border: 15px solid;
+  // }
+  //   .focus .scrollHeight:nth-child(@{index}) {
+  //     height: (@index - 1) * @grid-height-medium;
+  //     width: 200px;
+  //     background: red;
+  //     z-index: 100;
+  //     transform: translate3d(0,0,0);
+  //     border: 15px solid;
+  //   }
   /* Interation call and operation */
   .loop(@index + 1);
 }
@@ -384,10 +395,22 @@ background: red;
   .cols(6);
 }
 
+.focus .gridItemWrapper {
+  overflow: hidden;
+  // position: relative;
+  height: 8vh;
+}
+
 .gridItemWrapper {
   overflow: hidden;
-  position: relative;
-  height: 100%;
+  // position: relative;
+  height: 30vh;
+  //transition: overflow 0.5s;
+  //transition-delay: 0.5s;
+}
+
+.transitioning .gridItemWrapper {
+  overflow: visible;
 }
 
 .gridItem:last-child{

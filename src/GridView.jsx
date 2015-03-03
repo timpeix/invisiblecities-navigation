@@ -58,6 +58,7 @@ var GridItem = React.createClass({
     } else {
       this.props.parent.removeAllFocus();
     }
+    this.props.parent.setTransitioning(true);
   }
 });
 
@@ -65,14 +66,16 @@ var GridItem = React.createClass({
 var GridView = React.createClass({
   getInitialState: function() {
     return {
-      focus: false
+      focus: false,
+      transitioning: false
     };
   },
   render: function() {
     var cx = React.addons.classSet;
     var classes = cx({
       'gridView': true,
-      'focus': this.state.focus
+      'focus': this.state.focus,
+      'transitioning': this.state.transitioning
     });
     var gridNodes = this.props.projects.map(function(project, i) {
       return (
@@ -106,7 +109,19 @@ var GridView = React.createClass({
     this.setState({
       focus: !!(except)
     })
-  
+    this.getDOMNode().scrollTop = 0;
+  },
+  setTransitioning: function (bool) {
+    this.setState({
+      transitioning: bool
+    })
+  },
+  onTransitionEnd: function () {
+    console.log(999);
+    this.setTransitioning(false);
+  },
+  componentDidUpdate: function() {
+    this.getDOMNode().addEventListener('transitionend', this.onTransitionEnd, false);
   }
 })
 

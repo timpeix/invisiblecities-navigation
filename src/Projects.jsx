@@ -47,6 +47,13 @@ var projects = [
     image: './eric.png',
     landscape: false
   },
+  {
+    author: 'Eric Zeh',
+    city: 'Perinthia',
+    text: fillText,
+    image: './eric.png',
+    landscape: false
+  },
 ];
 
 var Projects = React.createClass({
