@@ -1,0 +1,676 @@
+.scrollable {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+@font-face {
+  font-family: 'Diktator';
+  src: url('weissenseediktatorsemibold-webfont.woff2') format('woff2'), url('weissenseediktatorsemibold-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+          user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  font-family: 'Diktator';
+  font-size: 17px;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  height: 100vh;
+}
+a {
+  color: inherit;
+  border: 0;
+  text-decoration: none;
+}
+html {
+  overflow: hidden;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+  margin: 0;
+}
+h1 {
+  font-size: 2em;
+  text-indent: -0.05em;
+}
+h2 {
+  font-size: 0.8em;
+}
+.whiteOnAubergine {
+  background: #7f545c;
+  color: #ffffff;
+}
+.fullscreenPage {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+}
+.page0 .fullscreenPage {
+  -webkit-transform: translateY(0vh);
+          transform: translateY(0vh);
+}
+.page1 .fullscreenPage {
+  -webkit-transform: translateY(-100vh);
+          transform: translateY(-100vh);
+}
+.cover {
+  background: #7f545c;
+  color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+}
+.cover h1,
+.cover h2 {
+  position: absolute;
+  width: 340px;
+  left: 36px;
+}
+.cover h1 {
+  top: 648px;
+}
+.cover h2 {
+  top: 682px;
+}
+.menu {
+  top: 0;
+  background: #7f545c;
+  color: #ffffff;
+  z-index: 10;
+  position: absolute;
+  height: 100vh;
+  overflow: hidden;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition-timing-function: ease-in-out;
+  box-shadow: 2px 0px 4px 0px rgba(50, 50, 50, 0.25);
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-perspective: 900000px;
+          perspective: 900000px;
+}
+.menu.collapsed {
+  width: 408px;
+  -webkit-transform: translate3d(-340px, 0, 0);
+          transform: translate3d(-340px, 0, 0);
+}
+.menu.collapsed ul li a,
+.menu.collapsed .appTitle {
+  display: none;
+}
+.menu.collapsed ul .active {
+  display: block;
+  font-size: 2em;
+  position: absolute;
+  bottom: 0px;
+  left: 353px;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transform-origin: 10 10;
+          transform-origin: 10 10;
+  width: 15em;
+}
+.menu.expanded {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  width: 408px;
+}
+.menu.expanded .currentTitle,
+.menu.expanded .menuIcon {
+  display: none;
+}
+.menu li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu li a {
+  font-size: 1.4em;
+}
+.menu ul {
+  margin: 36px;
+  margin-top: 138px;
+  padding: 0;
+  width: 12em;
+}
+.menu .appTitle {
+  position: absolute;
+  left: 36px;
+  top: 36px;
+  width: 10em;
+}
+.menu .menuIcon {
+  margin: 17px;
+  position: absolute;
+  left: 340px;
+}
+.menu .menuIcon .icon {
+  font-size: 3em;
+  line-height: 0.8;
+}
+.menu .menuIcon .icon,
+.menu .menuIcon .icon:before,
+.menu .menuIcon .icon:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 5px;
+  width: 35px;
+  background: white;
+  position: absolute;
+  display: block;
+  content: '';
+  top: 10px;
+}
+.menu .menuIcon .icon:before {
+  top: -10px;
+}
+.menu .menuIcon .icon:after {
+  bottom: -10px;
+}
+.menu .menuIcon .icon,
+.menu .menuIcon .text {
+  position: relative;
+}
+.menu .menuIcon .text {
+  top: 25px;
+  font-size: 1em;
+}
+.text {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  left: 240px;
+  width: 136px;
+  top: 104px;
+  margin: 0em;
+  height: 900px;
+}
+.gridView {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  margin-left: 68px;
+  top: 0;
+  height: 100vh;
+}
+.gridView .gridItem {
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
+  width: 956px;
+  height: 0;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+}
+.gridView .gridItem img {
+  width: 650px;
+  top: 0;
+  left: 0;
+}
+.gridView .gridItem .gridText {
+  right: 36px;
+  width: 204px;
+  top: 36px;
+  position: absolute;
+  padding: 17px;
+  background: #ffffff;
+  display: none;
+}
+.gridView .gridItem .block {
+  top: 0;
+  background: white;
+  padding: 17px;
+  height: 100%;
+  right: 0;
+  width: 306px;
+  position: absolute;
+  background: #e3d5d8;
+}
+/* Define two variables as the loop limits */
+/* Create a Parametric mixin and add a guard operation */
+/* the mixin is called, css outputted and iterations called */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(0) {
+  -webkit-transform: translate3d(0, -30vh, 0);
+          transform: translate3d(0, -30vh, 0);
+}
+.gridItem.beforeFocus:nth-child(0) {
+  -webkit-transform: translate3d(0, -8vh, 0);
+          transform: translate3d(0, -8vh, 0);
+}
+.gridItem.focus:nth-child(0) {
+  -webkit-transform: translate3d(0, -8vh, 0);
+          transform: translate3d(0, -8vh, 0);
+}
+.gridItem.afterFocus:nth-child(0) {
+  -webkit-transform: translate3d(0, 44vh, 0);
+          transform: translate3d(0, 44vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(1) {
+  -webkit-transform: translate3d(0, 0vh, 0);
+          transform: translate3d(0, 0vh, 0);
+}
+.gridItem.beforeFocus:nth-child(1) {
+  -webkit-transform: translate3d(0, 0vh, 0);
+          transform: translate3d(0, 0vh, 0);
+}
+.gridItem.focus:nth-child(1) {
+  -webkit-transform: translate3d(0, 0vh, 0);
+          transform: translate3d(0, 0vh, 0);
+}
+.gridItem.afterFocus:nth-child(1) {
+  -webkit-transform: translate3d(0, 52vh, 0);
+          transform: translate3d(0, 52vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(2) {
+  -webkit-transform: translate3d(0, 30vh, 0);
+          transform: translate3d(0, 30vh, 0);
+}
+.gridItem.beforeFocus:nth-child(2) {
+  -webkit-transform: translate3d(0, 8vh, 0);
+          transform: translate3d(0, 8vh, 0);
+}
+.gridItem.focus:nth-child(2) {
+  -webkit-transform: translate3d(0, 8vh, 0);
+          transform: translate3d(0, 8vh, 0);
+}
+.gridItem.afterFocus:nth-child(2) {
+  -webkit-transform: translate3d(0, 60vh, 0);
+          transform: translate3d(0, 60vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(3) {
+  -webkit-transform: translate3d(0, 60vh, 0);
+          transform: translate3d(0, 60vh, 0);
+}
+.gridItem.beforeFocus:nth-child(3) {
+  -webkit-transform: translate3d(0, 16vh, 0);
+          transform: translate3d(0, 16vh, 0);
+}
+.gridItem.focus:nth-child(3) {
+  -webkit-transform: translate3d(0, 16vh, 0);
+          transform: translate3d(0, 16vh, 0);
+}
+.gridItem.afterFocus:nth-child(3) {
+  -webkit-transform: translate3d(0, 68vh, 0);
+          transform: translate3d(0, 68vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(4) {
+  -webkit-transform: translate3d(0, 90vh, 0);
+          transform: translate3d(0, 90vh, 0);
+}
+.gridItem.beforeFocus:nth-child(4) {
+  -webkit-transform: translate3d(0, 24vh, 0);
+          transform: translate3d(0, 24vh, 0);
+}
+.gridItem.focus:nth-child(4) {
+  -webkit-transform: translate3d(0, 24vh, 0);
+          transform: translate3d(0, 24vh, 0);
+}
+.gridItem.afterFocus:nth-child(4) {
+  -webkit-transform: translate3d(0, 76vh, 0);
+          transform: translate3d(0, 76vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(5) {
+  -webkit-transform: translate3d(0, 120vh, 0);
+          transform: translate3d(0, 120vh, 0);
+}
+.gridItem.beforeFocus:nth-child(5) {
+  -webkit-transform: translate3d(0, 32vh, 0);
+          transform: translate3d(0, 32vh, 0);
+}
+.gridItem.focus:nth-child(5) {
+  -webkit-transform: translate3d(0, 32vh, 0);
+          transform: translate3d(0, 32vh, 0);
+}
+.gridItem.afterFocus:nth-child(5) {
+  -webkit-transform: translate3d(0, 84vh, 0);
+          transform: translate3d(0, 84vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(6) {
+  -webkit-transform: translate3d(0, 150vh, 0);
+          transform: translate3d(0, 150vh, 0);
+}
+.gridItem.beforeFocus:nth-child(6) {
+  -webkit-transform: translate3d(0, 40vh, 0);
+          transform: translate3d(0, 40vh, 0);
+}
+.gridItem.focus:nth-child(6) {
+  -webkit-transform: translate3d(0, 40vh, 0);
+          transform: translate3d(0, 40vh, 0);
+}
+.gridItem.afterFocus:nth-child(6) {
+  -webkit-transform: translate3d(0, 92vh, 0);
+          transform: translate3d(0, 92vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(7) {
+  -webkit-transform: translate3d(0, 180vh, 0);
+          transform: translate3d(0, 180vh, 0);
+}
+.gridItem.beforeFocus:nth-child(7) {
+  -webkit-transform: translate3d(0, 48vh, 0);
+          transform: translate3d(0, 48vh, 0);
+}
+.gridItem.focus:nth-child(7) {
+  -webkit-transform: translate3d(0, 48vh, 0);
+          transform: translate3d(0, 48vh, 0);
+}
+.gridItem.afterFocus:nth-child(7) {
+  -webkit-transform: translate3d(0, 100vh, 0);
+          transform: translate3d(0, 100vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(8) {
+  -webkit-transform: translate3d(0, 210vh, 0);
+          transform: translate3d(0, 210vh, 0);
+}
+.gridItem.beforeFocus:nth-child(8) {
+  -webkit-transform: translate3d(0, 56vh, 0);
+          transform: translate3d(0, 56vh, 0);
+}
+.gridItem.focus:nth-child(8) {
+  -webkit-transform: translate3d(0, 56vh, 0);
+          transform: translate3d(0, 56vh, 0);
+}
+.gridItem.afterFocus:nth-child(8) {
+  -webkit-transform: translate3d(0, 108vh, 0);
+          transform: translate3d(0, 108vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(9) {
+  -webkit-transform: translate3d(0, 240vh, 0);
+          transform: translate3d(0, 240vh, 0);
+}
+.gridItem.beforeFocus:nth-child(9) {
+  -webkit-transform: translate3d(0, 64vh, 0);
+          transform: translate3d(0, 64vh, 0);
+}
+.gridItem.focus:nth-child(9) {
+  -webkit-transform: translate3d(0, 64vh, 0);
+          transform: translate3d(0, 64vh, 0);
+}
+.gridItem.afterFocus:nth-child(9) {
+  -webkit-transform: translate3d(0, 116vh, 0);
+          transform: translate3d(0, 116vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(10) {
+  -webkit-transform: translate3d(0, 270vh, 0);
+          transform: translate3d(0, 270vh, 0);
+}
+.gridItem.beforeFocus:nth-child(10) {
+  -webkit-transform: translate3d(0, 72vh, 0);
+          transform: translate3d(0, 72vh, 0);
+}
+.gridItem.focus:nth-child(10) {
+  -webkit-transform: translate3d(0, 72vh, 0);
+          transform: translate3d(0, 72vh, 0);
+}
+.gridItem.afterFocus:nth-child(10) {
+  -webkit-transform: translate3d(0, 124vh, 0);
+          transform: translate3d(0, 124vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(11) {
+  -webkit-transform: translate3d(0, 300vh, 0);
+          transform: translate3d(0, 300vh, 0);
+}
+.gridItem.beforeFocus:nth-child(11) {
+  -webkit-transform: translate3d(0, 80vh, 0);
+          transform: translate3d(0, 80vh, 0);
+}
+.gridItem.focus:nth-child(11) {
+  -webkit-transform: translate3d(0, 80vh, 0);
+          transform: translate3d(0, 80vh, 0);
+}
+.gridItem.afterFocus:nth-child(11) {
+  -webkit-transform: translate3d(0, 132vh, 0);
+          transform: translate3d(0, 132vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(12) {
+  -webkit-transform: translate3d(0, 330vh, 0);
+          transform: translate3d(0, 330vh, 0);
+}
+.gridItem.beforeFocus:nth-child(12) {
+  -webkit-transform: translate3d(0, 88vh, 0);
+          transform: translate3d(0, 88vh, 0);
+}
+.gridItem.focus:nth-child(12) {
+  -webkit-transform: translate3d(0, 88vh, 0);
+          transform: translate3d(0, 88vh, 0);
+}
+.gridItem.afterFocus:nth-child(12) {
+  -webkit-transform: translate3d(0, 140vh, 0);
+          transform: translate3d(0, 140vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(13) {
+  -webkit-transform: translate3d(0, 360vh, 0);
+          transform: translate3d(0, 360vh, 0);
+}
+.gridItem.beforeFocus:nth-child(13) {
+  -webkit-transform: translate3d(0, 96vh, 0);
+          transform: translate3d(0, 96vh, 0);
+}
+.gridItem.focus:nth-child(13) {
+  -webkit-transform: translate3d(0, 96vh, 0);
+          transform: translate3d(0, 96vh, 0);
+}
+.gridItem.afterFocus:nth-child(13) {
+  -webkit-transform: translate3d(0, 148vh, 0);
+          transform: translate3d(0, 148vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(14) {
+  -webkit-transform: translate3d(0, 390vh, 0);
+          transform: translate3d(0, 390vh, 0);
+}
+.gridItem.beforeFocus:nth-child(14) {
+  -webkit-transform: translate3d(0, 104vh, 0);
+          transform: translate3d(0, 104vh, 0);
+}
+.gridItem.focus:nth-child(14) {
+  -webkit-transform: translate3d(0, 104vh, 0);
+          transform: translate3d(0, 104vh, 0);
+}
+.gridItem.afterFocus:nth-child(14) {
+  -webkit-transform: translate3d(0, 156vh, 0);
+          transform: translate3d(0, 156vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(15) {
+  -webkit-transform: translate3d(0, 420vh, 0);
+          transform: translate3d(0, 420vh, 0);
+}
+.gridItem.beforeFocus:nth-child(15) {
+  -webkit-transform: translate3d(0, 112vh, 0);
+          transform: translate3d(0, 112vh, 0);
+}
+.gridItem.focus:nth-child(15) {
+  -webkit-transform: translate3d(0, 112vh, 0);
+          transform: translate3d(0, 112vh, 0);
+}
+.gridItem.afterFocus:nth-child(15) {
+  -webkit-transform: translate3d(0, 164vh, 0);
+          transform: translate3d(0, 164vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(16) {
+  -webkit-transform: translate3d(0, 450vh, 0);
+          transform: translate3d(0, 450vh, 0);
+}
+.gridItem.beforeFocus:nth-child(16) {
+  -webkit-transform: translate3d(0, 120vh, 0);
+          transform: translate3d(0, 120vh, 0);
+}
+.gridItem.focus:nth-child(16) {
+  -webkit-transform: translate3d(0, 120vh, 0);
+          transform: translate3d(0, 120vh, 0);
+}
+.gridItem.afterFocus:nth-child(16) {
+  -webkit-transform: translate3d(0, 172vh, 0);
+          transform: translate3d(0, 172vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(17) {
+  -webkit-transform: translate3d(0, 480vh, 0);
+          transform: translate3d(0, 480vh, 0);
+}
+.gridItem.beforeFocus:nth-child(17) {
+  -webkit-transform: translate3d(0, 128vh, 0);
+          transform: translate3d(0, 128vh, 0);
+}
+.gridItem.focus:nth-child(17) {
+  -webkit-transform: translate3d(0, 128vh, 0);
+          transform: translate3d(0, 128vh, 0);
+}
+.gridItem.afterFocus:nth-child(17) {
+  -webkit-transform: translate3d(0, 180vh, 0);
+          transform: translate3d(0, 180vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(18) {
+  -webkit-transform: translate3d(0, 510vh, 0);
+          transform: translate3d(0, 510vh, 0);
+}
+.gridItem.beforeFocus:nth-child(18) {
+  -webkit-transform: translate3d(0, 136vh, 0);
+          transform: translate3d(0, 136vh, 0);
+}
+.gridItem.focus:nth-child(18) {
+  -webkit-transform: translate3d(0, 136vh, 0);
+          transform: translate3d(0, 136vh, 0);
+}
+.gridItem.afterFocus:nth-child(18) {
+  -webkit-transform: translate3d(0, 188vh, 0);
+          transform: translate3d(0, 188vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(19) {
+  -webkit-transform: translate3d(0, 540vh, 0);
+          transform: translate3d(0, 540vh, 0);
+}
+.gridItem.beforeFocus:nth-child(19) {
+  -webkit-transform: translate3d(0, 144vh, 0);
+          transform: translate3d(0, 144vh, 0);
+}
+.gridItem.focus:nth-child(19) {
+  -webkit-transform: translate3d(0, 144vh, 0);
+          transform: translate3d(0, 144vh, 0);
+}
+.gridItem.afterFocus:nth-child(19) {
+  -webkit-transform: translate3d(0, 196vh, 0);
+          transform: translate3d(0, 196vh, 0);
+}
+/* Interation call and operation */
+/* As the mixin is called CSS is outputted */
+.gridItem:nth-child(20) {
+  -webkit-transform: translate3d(0, 570vh, 0);
+          transform: translate3d(0, 570vh, 0);
+}
+.gridItem.beforeFocus:nth-child(20) {
+  -webkit-transform: translate3d(0, 152vh, 0);
+          transform: translate3d(0, 152vh, 0);
+}
+.gridItem.focus:nth-child(20) {
+  -webkit-transform: translate3d(0, 152vh, 0);
+          transform: translate3d(0, 152vh, 0);
+}
+.gridItem.afterFocus:nth-child(20) {
+  -webkit-transform: translate3d(0, 204vh, 0);
+          transform: translate3d(0, 204vh, 0);
+}
+/* Interation call and operation */
+.noTranslate {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  transition: -webkit-transform 2s ;
+  transition: transform 2s ;
+}
+.horizontal-leave {
+  display: block;
+  position: absolute;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  transition: -webkit-transform 0.5s ;
+  transition: transform 0.5s ;
+}
+.horizontal-leave-active {
+  -webkit-transform: translate3d(0, -100vh, 0);
+          transform: translate3d(0, -100vh, 0);
+}
+.horizontal-enter {
+  display: block;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  -webkit-transform: translate3d(0, 100vh, 0);
+          transform: translate3d(0, 100vh, 0);
+}
+.horizontal-enter-active {
+  -webkit-transform: translate3d(0, 0vh, 0);
+          transform: translate3d(0, 0vh, 0);
+}
+.preface {
+  position: absolute;
+  top: 138px;
+  left: 478px;
+  width: 408px;
+}
+.focus .gridItemWrapper {
+  overflow: hidden;
+  height: 8vh;
+}
+.gridItemWrapper {
+  overflow: hidden;
+  height: 30vh;
+}
+.transitioning .gridItemWrapper {
+  overflow: visible;
+}
+.gridItem:last-child .gridItemWrapper {
+  height: 30vh;
+}
+.gridItem.focus .gridItemWrapper {
+  height: 60vh;
+}
