@@ -29,16 +29,12 @@ var MenuList = React.createClass({
         {listNodes}
       </ul>
     );
-  },
-  handleClick: function(e) {
-    console.log(e);
   }
 });
 
 var Menu = React.createClass({
   getInitialState: function() {
     return {
-      activeTitle: this.props.list[0],
       expanded: false
     };
   },
@@ -61,7 +57,6 @@ var Menu = React.createClass({
     );
   },
   handleSwipe: function (e, x, y, flick) {
-    console.log(99, e, x, y, flick);
     if (flick && Math.abs(y) < Math.abs(x)) {
       this.setState({
         expanded: (x < 0)

@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var livereload = require('gulp-livereload');
 var less = require('gulp-less');
-var to5ify = require('6to5ify');
+var babelify = require("babelify");
 var browserify = require('browserify');
 var watchify = require('gulp-watchify');
 var autoprefixer = require('gulp-autoprefixer');
@@ -32,8 +32,8 @@ gulp.task('browserify', watchify(function (watchify) {
       debug: true,
       watch: watching,
       setup: function (bundle) {
-        bundle.transform(reactify);
-        //bundle.transform(to5ify);
+        //bundle.transform(reactify);
+        bundle.transform(babelify);
       }
     }))
     .pipe(rename('index.js'))

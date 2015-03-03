@@ -6,12 +6,7 @@ var Menu = require('./Menu.jsx');
 var Content = require('./Content.jsx');
 var Projects = require('./Projects.jsx');
 var Preface = require('./Preface.jsx');
-
-
-
 var TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
-
-
 
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;

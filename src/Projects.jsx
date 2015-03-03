@@ -11,7 +11,8 @@ var projects = [
     city: 'Perinthia',
     text: fillText,
     image: './IMG_0012.PNG',
-    landscape: true
+    landscape: true,
+    path: 'dom'
   },
   
   {
@@ -19,21 +20,25 @@ var projects = [
     city: 'Unknown',
     text: fillText,
     image: './IMG_0013.PNG',
-    landscape: false
+    landscape: false,
+    path: 'lorenz',
+    specialRotate: true
   },
   {
     author: 'Wiebke Helmchen',
     city: 'Chloe',
     text: fillText,
     image: './IMG_0011.PNG',
-    landscape: true
+    landscape: true,
+    path: 'wiebke'
   },
   {
     author: 'Ilya Barret',
     city: 'Perinthia',
     text: fillText,
     image: './IMG_0016.PNG',
-    landscape: false
+    landscape: false,
+    path: 'ilya'
   },
 ];
 

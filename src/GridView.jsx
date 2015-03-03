@@ -38,13 +38,19 @@ var GridItem = React.createClass({
     };
     return (
       <div className={classes} style={divStyle} onClick={this.focus}>
+        <div className='gridItemWrapper'>
         <img src={this.props.image}/>
         <div className='block'>
-          <div className='author'>{this.props.author}</div>
+          <div className='author' onClick={this.goToProject}>{this.props.author}</div>
           <div className='gridText'>{this.props.text}</div>
+        </div>
         </div>
       </div>
     )
+  },
+  goToProject: function() {
+    var p = this.props;
+    window.location.href = `thepony://o/${p.path}?landscape=${p.landscape}&specialRotate=${p.specialRotate}`;
   },
   focus: function() {
     if (!this.state.focus) {
@@ -89,8 +95,7 @@ var GridView = React.createClass({
       this.refs[i].setState({
         before: (!found && !isExcept && except),
         after: (found && except),
-        focus: isExcept,
-        zIndex: (found) ? at - i : 0
+        focus: isExcept
       });
       if (isExcept) {
         found = true;

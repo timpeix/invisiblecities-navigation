@@ -266,15 +266,12 @@ h2 {
   margin-left: @grid;
   top: 0;
   height: 100vh;
-  //position: absolute;
   .gridItem {
     box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
     position: relative;
-    overflow-y: hidden;
     width: 1024 - @grid;
-    transition: height 0.5s;
-    .rows(3.5);
-    
+    height: 30vh;
+    transition: transform 0.5s;
     img {
       width: 1024 - @grid;
       position: absolute;
@@ -305,15 +302,42 @@ h2 {
   }
   &.focus {
     .gridItem {
-      height: 5.05vh;
     }
     .gridItem.focus {
-      height: 90vh;
-      z-index: 2;
     }
   }
 }
 
+/* Define two variables as the loop limits */
+@from : 0;
+@to : 20;
+ 
+/* Create a Parametric mixin and add a guard operation */
+.loop(@index) when(@index =< @to) {
+ 
+  /* As the mixin is called CSS is outputted */
+  .gridItem:nth-child(@{index}) {
+    transform: translate3d(0,0,0);
+  }
+  
+  .gridItem.beforeFocus:nth-child(@{index}) {
+    // normal = i-1*30vh
+    transform: translate3d(0, -(@index - 1) * (30vh - 8vh) ,0);
+  }
+ 
+  .gridItem.focus:nth-child(@{index}) {
+    transform: translate3d(0,-(@index - 1) * (30vh - 8vh) ,0);
+  }
+  .gridItem.afterFocus:nth-child(@{index}) {
+    // normal = i-1*30vh
+    transform: translate3d(0,-(@index - 1) * (30vh - 8vh) + 72vh,0);
+  }
+  /* Interation call and operation */
+  .loop(@index + 1);
+}
+ 
+/* the mixin is called, css outputted and iterations called */
+.loop(@from);
 
 
 .noTranslate{
@@ -347,4 +371,21 @@ h2 {
   .top(1.5);
   .left(6.5);
   .cols(6);
+}
+
+.gridItemWrapper {
+  overflow: hidden;
+  position: relative;
+  height: 30vh;
+}
+
+.gridItem:last-child{
+   .gridItemWrapper{
+    height: 30vh;
+  }
+}
+.gridItem.focus {
+     .gridItemWrapper{
+      height: 80vh;
+    }
 }
