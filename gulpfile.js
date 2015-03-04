@@ -11,6 +11,7 @@ var rename = require("gulp-rename");
 var connect = require('gulp-connect');
 var plumber = require('gulp-plumber');
 var deploy = require('gulp-gh-pages');
+var uglify = require('gulp-uglify');
 
 // GH pages
 gulp.task('deploy', function () {
@@ -40,6 +41,12 @@ gulp.task('browserify', watchify(function (watchify) {
     .pipe(gulp.dest('./dist/'))
     .pipe(connect.reload());
 }));
+
+// gulp.task('compress', function() {
+//   gulp.src('dist/index.js')
+//     .pipe(uglify())
+//     .pipe(gulp.dest('dist'))
+// });
 
 gulp.task('watchify', ['enable-watch-mode', 'browserify']);
 

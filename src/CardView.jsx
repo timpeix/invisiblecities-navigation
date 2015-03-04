@@ -51,8 +51,8 @@ var CardItem = React.createClass({
     var p = this.props;
     window.location.href = `thepony://o/${p.path}?landscape=${p.landscape}&specialRotate=${p.specialRotate}`;
   },
-  focus: function() {
-    console.log(87, this.props.author);
+  focus: function(e) {
+    console.log(87, this.props.author, e);
     if (!this.state.focus) {
       this.props.parent.removeAllFocus(this);
     } else {

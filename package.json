@@ -4,7 +4,7 @@
     "gulp": "^3.8.11",
     "react": "^0.12.2",
     "react-router": "^0.12.0",
-    "react-swiper": "^0.1.4"
+    "react-swipeable": "^2.0.0"
   },
   "devDependencies": {
     "6to5ify": "^4.1.1",
@@ -18,6 +18,7 @@
     "gulp-plumber": "^0.6.6",
     "gulp-rename": "^1.2.0",
     "gulp-server-livereload": "^1.0.2",
+    "gulp-uglify": "^1.1.0",
     "gulp-watchify": "^0.3.0",
     "reactify": "^1.0.0",
     "watchify": "^2.3.0"
