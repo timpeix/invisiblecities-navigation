@@ -49,14 +49,13 @@ var GridItem = React.createClass({
     )
   },
   goToProject: function(e) {
-    console.log(86);
     e.preventDefault();
     e.stopPropagation();
     var p = this.props;
     window.location.href = `thepony://o/${p.path}?landscape=${p.landscape}&specialRotate=${p.specialRotate}`;
   },
   focus: function() {
-    console.log(87);
+    console.log(87, this.props.author);
     if (!this.state.focus) {
       this.props.parent.removeAllFocus(this);
     } else {
@@ -121,7 +120,6 @@ var GridView = React.createClass({
     })
   },
   onTransitionEnd: function () {
-    console.log(999);
     this.setTransitioning(false);
   },
   componentDidUpdate: function() {
