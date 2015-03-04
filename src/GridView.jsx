@@ -28,7 +28,6 @@ var GridItem = React.createClass({
     var cx = React.addons.classSet;
     var classes = cx({
       'gridItem': true,
-      'landscape': this.props.landscape,
       'focus': this.state.focus,
       'beforeFocus': this.state.before,
       'afterFocus': this.state.after,

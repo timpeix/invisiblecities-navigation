@@ -300,6 +300,24 @@ h2 {
       position: absolute;
       background: lighten(@aubergine, 45);
     }
+    
+    .author {
+      display: inline;
+    }
+  }
+  
+  .gridItemWrapper {
+    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
+    height: @grid-height-small;
+  }
+
+  .gridItem.focus .gridItemWrapper{
+    height: 60vh;
+  }
+
+  .gridViewWrapper {
+    position: relative;
+    overflow: hidden;
   }
 }
 
@@ -377,18 +395,4 @@ h2 {
   .top(1.5);
   .left(6.5);
   .cols(6);
-}
-
-.gridItemWrapper {
-  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
-  height: @grid-height-small;
-}
-
-.gridItem.focus .gridItemWrapper{
-  height: 60vh;
-}
-
-.gridViewWrapper {
-  position: relative;
-  overflow: hidden;
 }
