@@ -203,552 +203,423 @@ h2 {
   margin: 0em;
   height: 900px;
 }
-.cardView {
+.gridView {
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   margin-left: 68px;
   top: 0;
   height: 100vh;
-  background: #e3d5d8;
 }
-.cardView .cardItem {
-  position: absolute;
+.gridView .gridItem {
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
   width: 956px;
+  height: 0;
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
-  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
-  height: 8vh;
 }
-.cardView .cardItem.focus {
-  height: 60vh;
-}
-.cardView .cardItem img {
+.gridView .gridItem img {
   width: 650px;
-}
-.cardView .cardItem .cardText {
-  margin-top: 1em;
-}
-.cardView .cardItem .block {
   top: 0;
+  left: 0;
+}
+.gridView .gridItem .gridText {
+  right: 36px;
+  width: 204px;
+  top: 36px;
+  position: absolute;
   padding: 17px;
+  background: #ffffff;
+  display: none;
+}
+.gridView .gridItem .block {
+  top: 0;
+  background: white;
+  padding: 17px;
+  height: 100%;
   right: 0;
-  height: 60vh;
   width: 306px;
   position: absolute;
   background: #e3d5d8;
-}
-.cardView .cardItem .author {
-  display: inline;
-}
-.cardView .cardViewWrapper {
-  position: relative;
-  overflow: hidden;
 }
 /* Define two variables as the loop limits */
 /* Create a Parametric mixin and add a guard operation */
 /* the mixin is called, css outputted and iterations called */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(0) {
+.gridItem:nth-child(0) {
   -webkit-transform: translate3d(0, -30vh, 0);
           transform: translate3d(0, -30vh, 0);
 }
-.cardItem.beforeFocus:nth-child(0) {
+.gridItem.beforeFocus:nth-child(0) {
   -webkit-transform: translate3d(0, -8vh, 0);
           transform: translate3d(0, -8vh, 0);
 }
-.cardItem.focus:nth-child(0) {
+.gridItem.focus:nth-child(0) {
   -webkit-transform: translate3d(0, -8vh, 0);
           transform: translate3d(0, -8vh, 0);
 }
-.cardItem.afterFocus:nth-child(0) {
+.gridItem.afterFocus:nth-child(0) {
   -webkit-transform: translate3d(0, 44vh, 0);
           transform: translate3d(0, 44vh, 0);
 }
-.cardViewWrapper.childnum0 {
-  height: 0vh;
-}
-.focus .cardViewWrapper.childnum0 {
-  height: 52vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(1) {
+.gridItem:nth-child(1) {
   -webkit-transform: translate3d(0, 0vh, 0);
           transform: translate3d(0, 0vh, 0);
 }
-.cardItem.beforeFocus:nth-child(1) {
+.gridItem.beforeFocus:nth-child(1) {
   -webkit-transform: translate3d(0, 0vh, 0);
           transform: translate3d(0, 0vh, 0);
 }
-.cardItem.focus:nth-child(1) {
+.gridItem.focus:nth-child(1) {
   -webkit-transform: translate3d(0, 0vh, 0);
           transform: translate3d(0, 0vh, 0);
 }
-.cardItem.afterFocus:nth-child(1) {
+.gridItem.afterFocus:nth-child(1) {
   -webkit-transform: translate3d(0, 52vh, 0);
           transform: translate3d(0, 52vh, 0);
 }
-.cardViewWrapper.childnum1 {
-  height: 30vh;
-}
-.focus .cardViewWrapper.childnum1 {
-  height: 60vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(2) {
+.gridItem:nth-child(2) {
   -webkit-transform: translate3d(0, 30vh, 0);
           transform: translate3d(0, 30vh, 0);
 }
-.cardItem.beforeFocus:nth-child(2) {
+.gridItem.beforeFocus:nth-child(2) {
   -webkit-transform: translate3d(0, 8vh, 0);
           transform: translate3d(0, 8vh, 0);
 }
-.cardItem.focus:nth-child(2) {
+.gridItem.focus:nth-child(2) {
   -webkit-transform: translate3d(0, 8vh, 0);
           transform: translate3d(0, 8vh, 0);
 }
-.cardItem.afterFocus:nth-child(2) {
+.gridItem.afterFocus:nth-child(2) {
   -webkit-transform: translate3d(0, 60vh, 0);
           transform: translate3d(0, 60vh, 0);
-}
-.cardViewWrapper.childnum2 {
-  height: 60vh;
-}
-.focus .cardViewWrapper.childnum2 {
-  height: 68vh;
 }
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(3) {
+.gridItem:nth-child(3) {
   -webkit-transform: translate3d(0, 60vh, 0);
           transform: translate3d(0, 60vh, 0);
 }
-.cardItem.beforeFocus:nth-child(3) {
+.gridItem.beforeFocus:nth-child(3) {
   -webkit-transform: translate3d(0, 16vh, 0);
           transform: translate3d(0, 16vh, 0);
 }
-.cardItem.focus:nth-child(3) {
+.gridItem.focus:nth-child(3) {
   -webkit-transform: translate3d(0, 16vh, 0);
           transform: translate3d(0, 16vh, 0);
 }
-.cardItem.afterFocus:nth-child(3) {
+.gridItem.afterFocus:nth-child(3) {
   -webkit-transform: translate3d(0, 68vh, 0);
           transform: translate3d(0, 68vh, 0);
 }
-.cardViewWrapper.childnum3 {
-  height: 90vh;
-}
-.focus .cardViewWrapper.childnum3 {
-  height: 76vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(4) {
+.gridItem:nth-child(4) {
   -webkit-transform: translate3d(0, 90vh, 0);
           transform: translate3d(0, 90vh, 0);
 }
-.cardItem.beforeFocus:nth-child(4) {
+.gridItem.beforeFocus:nth-child(4) {
   -webkit-transform: translate3d(0, 24vh, 0);
           transform: translate3d(0, 24vh, 0);
 }
-.cardItem.focus:nth-child(4) {
+.gridItem.focus:nth-child(4) {
   -webkit-transform: translate3d(0, 24vh, 0);
           transform: translate3d(0, 24vh, 0);
 }
-.cardItem.afterFocus:nth-child(4) {
+.gridItem.afterFocus:nth-child(4) {
   -webkit-transform: translate3d(0, 76vh, 0);
           transform: translate3d(0, 76vh, 0);
 }
-.cardViewWrapper.childnum4 {
-  height: 120vh;
-}
-.focus .cardViewWrapper.childnum4 {
-  height: 84vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(5) {
+.gridItem:nth-child(5) {
   -webkit-transform: translate3d(0, 120vh, 0);
           transform: translate3d(0, 120vh, 0);
 }
-.cardItem.beforeFocus:nth-child(5) {
+.gridItem.beforeFocus:nth-child(5) {
   -webkit-transform: translate3d(0, 32vh, 0);
           transform: translate3d(0, 32vh, 0);
 }
-.cardItem.focus:nth-child(5) {
+.gridItem.focus:nth-child(5) {
   -webkit-transform: translate3d(0, 32vh, 0);
           transform: translate3d(0, 32vh, 0);
 }
-.cardItem.afterFocus:nth-child(5) {
+.gridItem.afterFocus:nth-child(5) {
   -webkit-transform: translate3d(0, 84vh, 0);
           transform: translate3d(0, 84vh, 0);
 }
-.cardViewWrapper.childnum5 {
-  height: 150vh;
-}
-.focus .cardViewWrapper.childnum5 {
-  height: 92vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(6) {
+.gridItem:nth-child(6) {
   -webkit-transform: translate3d(0, 150vh, 0);
           transform: translate3d(0, 150vh, 0);
 }
-.cardItem.beforeFocus:nth-child(6) {
+.gridItem.beforeFocus:nth-child(6) {
   -webkit-transform: translate3d(0, 40vh, 0);
           transform: translate3d(0, 40vh, 0);
 }
-.cardItem.focus:nth-child(6) {
+.gridItem.focus:nth-child(6) {
   -webkit-transform: translate3d(0, 40vh, 0);
           transform: translate3d(0, 40vh, 0);
 }
-.cardItem.afterFocus:nth-child(6) {
+.gridItem.afterFocus:nth-child(6) {
   -webkit-transform: translate3d(0, 92vh, 0);
           transform: translate3d(0, 92vh, 0);
 }
-.cardViewWrapper.childnum6 {
-  height: 180vh;
-}
-.focus .cardViewWrapper.childnum6 {
-  height: 100vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(7) {
+.gridItem:nth-child(7) {
   -webkit-transform: translate3d(0, 180vh, 0);
           transform: translate3d(0, 180vh, 0);
 }
-.cardItem.beforeFocus:nth-child(7) {
+.gridItem.beforeFocus:nth-child(7) {
   -webkit-transform: translate3d(0, 48vh, 0);
           transform: translate3d(0, 48vh, 0);
 }
-.cardItem.focus:nth-child(7) {
+.gridItem.focus:nth-child(7) {
   -webkit-transform: translate3d(0, 48vh, 0);
           transform: translate3d(0, 48vh, 0);
 }
-.cardItem.afterFocus:nth-child(7) {
+.gridItem.afterFocus:nth-child(7) {
   -webkit-transform: translate3d(0, 100vh, 0);
           transform: translate3d(0, 100vh, 0);
 }
-.cardViewWrapper.childnum7 {
-  height: 210vh;
-}
-.focus .cardViewWrapper.childnum7 {
-  height: 108vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(8) {
+.gridItem:nth-child(8) {
   -webkit-transform: translate3d(0, 210vh, 0);
           transform: translate3d(0, 210vh, 0);
 }
-.cardItem.beforeFocus:nth-child(8) {
+.gridItem.beforeFocus:nth-child(8) {
   -webkit-transform: translate3d(0, 56vh, 0);
           transform: translate3d(0, 56vh, 0);
 }
-.cardItem.focus:nth-child(8) {
+.gridItem.focus:nth-child(8) {
   -webkit-transform: translate3d(0, 56vh, 0);
           transform: translate3d(0, 56vh, 0);
 }
-.cardItem.afterFocus:nth-child(8) {
+.gridItem.afterFocus:nth-child(8) {
   -webkit-transform: translate3d(0, 108vh, 0);
           transform: translate3d(0, 108vh, 0);
 }
-.cardViewWrapper.childnum8 {
-  height: 240vh;
-}
-.focus .cardViewWrapper.childnum8 {
-  height: 116vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(9) {
+.gridItem:nth-child(9) {
   -webkit-transform: translate3d(0, 240vh, 0);
           transform: translate3d(0, 240vh, 0);
 }
-.cardItem.beforeFocus:nth-child(9) {
+.gridItem.beforeFocus:nth-child(9) {
   -webkit-transform: translate3d(0, 64vh, 0);
           transform: translate3d(0, 64vh, 0);
 }
-.cardItem.focus:nth-child(9) {
+.gridItem.focus:nth-child(9) {
   -webkit-transform: translate3d(0, 64vh, 0);
           transform: translate3d(0, 64vh, 0);
 }
-.cardItem.afterFocus:nth-child(9) {
+.gridItem.afterFocus:nth-child(9) {
   -webkit-transform: translate3d(0, 116vh, 0);
           transform: translate3d(0, 116vh, 0);
 }
-.cardViewWrapper.childnum9 {
-  height: 270vh;
-}
-.focus .cardViewWrapper.childnum9 {
-  height: 124vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(10) {
+.gridItem:nth-child(10) {
   -webkit-transform: translate3d(0, 270vh, 0);
           transform: translate3d(0, 270vh, 0);
 }
-.cardItem.beforeFocus:nth-child(10) {
+.gridItem.beforeFocus:nth-child(10) {
   -webkit-transform: translate3d(0, 72vh, 0);
           transform: translate3d(0, 72vh, 0);
 }
-.cardItem.focus:nth-child(10) {
+.gridItem.focus:nth-child(10) {
   -webkit-transform: translate3d(0, 72vh, 0);
           transform: translate3d(0, 72vh, 0);
 }
-.cardItem.afterFocus:nth-child(10) {
+.gridItem.afterFocus:nth-child(10) {
   -webkit-transform: translate3d(0, 124vh, 0);
           transform: translate3d(0, 124vh, 0);
 }
-.cardViewWrapper.childnum10 {
-  height: 300vh;
-}
-.focus .cardViewWrapper.childnum10 {
-  height: 132vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(11) {
+.gridItem:nth-child(11) {
   -webkit-transform: translate3d(0, 300vh, 0);
           transform: translate3d(0, 300vh, 0);
 }
-.cardItem.beforeFocus:nth-child(11) {
+.gridItem.beforeFocus:nth-child(11) {
   -webkit-transform: translate3d(0, 80vh, 0);
           transform: translate3d(0, 80vh, 0);
 }
-.cardItem.focus:nth-child(11) {
+.gridItem.focus:nth-child(11) {
   -webkit-transform: translate3d(0, 80vh, 0);
           transform: translate3d(0, 80vh, 0);
 }
-.cardItem.afterFocus:nth-child(11) {
+.gridItem.afterFocus:nth-child(11) {
   -webkit-transform: translate3d(0, 132vh, 0);
           transform: translate3d(0, 132vh, 0);
 }
-.cardViewWrapper.childnum11 {
-  height: 330vh;
-}
-.focus .cardViewWrapper.childnum11 {
-  height: 140vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(12) {
+.gridItem:nth-child(12) {
   -webkit-transform: translate3d(0, 330vh, 0);
           transform: translate3d(0, 330vh, 0);
 }
-.cardItem.beforeFocus:nth-child(12) {
+.gridItem.beforeFocus:nth-child(12) {
   -webkit-transform: translate3d(0, 88vh, 0);
           transform: translate3d(0, 88vh, 0);
 }
-.cardItem.focus:nth-child(12) {
+.gridItem.focus:nth-child(12) {
   -webkit-transform: translate3d(0, 88vh, 0);
           transform: translate3d(0, 88vh, 0);
 }
-.cardItem.afterFocus:nth-child(12) {
+.gridItem.afterFocus:nth-child(12) {
   -webkit-transform: translate3d(0, 140vh, 0);
           transform: translate3d(0, 140vh, 0);
 }
-.cardViewWrapper.childnum12 {
-  height: 360vh;
-}
-.focus .cardViewWrapper.childnum12 {
-  height: 148vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(13) {
+.gridItem:nth-child(13) {
   -webkit-transform: translate3d(0, 360vh, 0);
           transform: translate3d(0, 360vh, 0);
 }
-.cardItem.beforeFocus:nth-child(13) {
+.gridItem.beforeFocus:nth-child(13) {
   -webkit-transform: translate3d(0, 96vh, 0);
           transform: translate3d(0, 96vh, 0);
 }
-.cardItem.focus:nth-child(13) {
+.gridItem.focus:nth-child(13) {
   -webkit-transform: translate3d(0, 96vh, 0);
           transform: translate3d(0, 96vh, 0);
 }
-.cardItem.afterFocus:nth-child(13) {
+.gridItem.afterFocus:nth-child(13) {
   -webkit-transform: translate3d(0, 148vh, 0);
           transform: translate3d(0, 148vh, 0);
 }
-.cardViewWrapper.childnum13 {
-  height: 390vh;
-}
-.focus .cardViewWrapper.childnum13 {
-  height: 156vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(14) {
+.gridItem:nth-child(14) {
   -webkit-transform: translate3d(0, 390vh, 0);
           transform: translate3d(0, 390vh, 0);
 }
-.cardItem.beforeFocus:nth-child(14) {
+.gridItem.beforeFocus:nth-child(14) {
   -webkit-transform: translate3d(0, 104vh, 0);
           transform: translate3d(0, 104vh, 0);
 }
-.cardItem.focus:nth-child(14) {
+.gridItem.focus:nth-child(14) {
   -webkit-transform: translate3d(0, 104vh, 0);
           transform: translate3d(0, 104vh, 0);
 }
-.cardItem.afterFocus:nth-child(14) {
+.gridItem.afterFocus:nth-child(14) {
   -webkit-transform: translate3d(0, 156vh, 0);
           transform: translate3d(0, 156vh, 0);
 }
-.cardViewWrapper.childnum14 {
-  height: 420vh;
-}
-.focus .cardViewWrapper.childnum14 {
-  height: 164vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(15) {
+.gridItem:nth-child(15) {
   -webkit-transform: translate3d(0, 420vh, 0);
           transform: translate3d(0, 420vh, 0);
 }
-.cardItem.beforeFocus:nth-child(15) {
+.gridItem.beforeFocus:nth-child(15) {
   -webkit-transform: translate3d(0, 112vh, 0);
           transform: translate3d(0, 112vh, 0);
 }
-.cardItem.focus:nth-child(15) {
+.gridItem.focus:nth-child(15) {
   -webkit-transform: translate3d(0, 112vh, 0);
           transform: translate3d(0, 112vh, 0);
 }
-.cardItem.afterFocus:nth-child(15) {
+.gridItem.afterFocus:nth-child(15) {
   -webkit-transform: translate3d(0, 164vh, 0);
           transform: translate3d(0, 164vh, 0);
 }
-.cardViewWrapper.childnum15 {
-  height: 450vh;
-}
-.focus .cardViewWrapper.childnum15 {
-  height: 172vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(16) {
+.gridItem:nth-child(16) {
   -webkit-transform: translate3d(0, 450vh, 0);
           transform: translate3d(0, 450vh, 0);
 }
-.cardItem.beforeFocus:nth-child(16) {
+.gridItem.beforeFocus:nth-child(16) {
   -webkit-transform: translate3d(0, 120vh, 0);
           transform: translate3d(0, 120vh, 0);
 }
-.cardItem.focus:nth-child(16) {
+.gridItem.focus:nth-child(16) {
   -webkit-transform: translate3d(0, 120vh, 0);
           transform: translate3d(0, 120vh, 0);
 }
-.cardItem.afterFocus:nth-child(16) {
+.gridItem.afterFocus:nth-child(16) {
   -webkit-transform: translate3d(0, 172vh, 0);
           transform: translate3d(0, 172vh, 0);
 }
-.cardViewWrapper.childnum16 {
-  height: 480vh;
-}
-.focus .cardViewWrapper.childnum16 {
-  height: 180vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(17) {
+.gridItem:nth-child(17) {
   -webkit-transform: translate3d(0, 480vh, 0);
           transform: translate3d(0, 480vh, 0);
 }
-.cardItem.beforeFocus:nth-child(17) {
+.gridItem.beforeFocus:nth-child(17) {
   -webkit-transform: translate3d(0, 128vh, 0);
           transform: translate3d(0, 128vh, 0);
 }
-.cardItem.focus:nth-child(17) {
+.gridItem.focus:nth-child(17) {
   -webkit-transform: translate3d(0, 128vh, 0);
           transform: translate3d(0, 128vh, 0);
 }
-.cardItem.afterFocus:nth-child(17) {
+.gridItem.afterFocus:nth-child(17) {
   -webkit-transform: translate3d(0, 180vh, 0);
           transform: translate3d(0, 180vh, 0);
 }
-.cardViewWrapper.childnum17 {
-  height: 510vh;
-}
-.focus .cardViewWrapper.childnum17 {
-  height: 188vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(18) {
+.gridItem:nth-child(18) {
   -webkit-transform: translate3d(0, 510vh, 0);
           transform: translate3d(0, 510vh, 0);
 }
-.cardItem.beforeFocus:nth-child(18) {
+.gridItem.beforeFocus:nth-child(18) {
   -webkit-transform: translate3d(0, 136vh, 0);
           transform: translate3d(0, 136vh, 0);
 }
-.cardItem.focus:nth-child(18) {
+.gridItem.focus:nth-child(18) {
   -webkit-transform: translate3d(0, 136vh, 0);
           transform: translate3d(0, 136vh, 0);
 }
-.cardItem.afterFocus:nth-child(18) {
+.gridItem.afterFocus:nth-child(18) {
   -webkit-transform: translate3d(0, 188vh, 0);
           transform: translate3d(0, 188vh, 0);
 }
-.cardViewWrapper.childnum18 {
-  height: 540vh;
-}
-.focus .cardViewWrapper.childnum18 {
-  height: 196vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(19) {
+.gridItem:nth-child(19) {
   -webkit-transform: translate3d(0, 540vh, 0);
           transform: translate3d(0, 540vh, 0);
 }
-.cardItem.beforeFocus:nth-child(19) {
+.gridItem.beforeFocus:nth-child(19) {
   -webkit-transform: translate3d(0, 144vh, 0);
           transform: translate3d(0, 144vh, 0);
 }
-.cardItem.focus:nth-child(19) {
+.gridItem.focus:nth-child(19) {
   -webkit-transform: translate3d(0, 144vh, 0);
           transform: translate3d(0, 144vh, 0);
 }
-.cardItem.afterFocus:nth-child(19) {
+.gridItem.afterFocus:nth-child(19) {
   -webkit-transform: translate3d(0, 196vh, 0);
           transform: translate3d(0, 196vh, 0);
 }
-.cardViewWrapper.childnum19 {
-  height: 570vh;
-}
-.focus .cardViewWrapper.childnum19 {
-  height: 204vh;
-}
 /* Interation call and operation */
 /* As the mixin is called CSS is outputted */
-.cardItem:nth-child(20) {
+.gridItem:nth-child(20) {
   -webkit-transform: translate3d(0, 570vh, 0);
           transform: translate3d(0, 570vh, 0);
 }
-.cardItem.beforeFocus:nth-child(20) {
+.gridItem.beforeFocus:nth-child(20) {
   -webkit-transform: translate3d(0, 152vh, 0);
           transform: translate3d(0, 152vh, 0);
 }
-.cardItem.focus:nth-child(20) {
+.gridItem.focus:nth-child(20) {
   -webkit-transform: translate3d(0, 152vh, 0);
           transform: translate3d(0, 152vh, 0);
 }
-.cardItem.afterFocus:nth-child(20) {
+.gridItem.afterFocus:nth-child(20) {
   -webkit-transform: translate3d(0, 204vh, 0);
           transform: translate3d(0, 204vh, 0);
-}
-.cardViewWrapper.childnum20 {
-  height: 600vh;
-}
-.focus .cardViewWrapper.childnum20 {
-  height: 212vh;
 }
 /* Interation call and operation */
 .noTranslate {
@@ -785,4 +656,21 @@ h2 {
   top: 138px;
   left: 478px;
   width: 408px;
+}
+.focus .gridItemWrapper {
+  overflow: hidden;
+  height: 8vh;
+}
+.gridItemWrapper {
+  overflow: hidden;
+  height: 30vh;
+}
+.transitioning .gridItemWrapper {
+  overflow: visible;
+}
+.gridItem:last-child .gridItemWrapper {
+  height: 30vh;
+}
+.gridItem.focus .gridItemWrapper {
+  height: 60vh;
 }
