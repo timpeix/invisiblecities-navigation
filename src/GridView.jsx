@@ -86,11 +86,14 @@ var GridView = React.createClass({
       );
     }, this);
     
+    var numClass = 'gridViewWrapper childnum' + gridNodes.length;
+    
     this.gridItems = gridNodes;
     
     return (<div className={classes}>
-      {gridNodes}
-      <div className="scrollHeight"></div>
+        <div className={numClass}>
+          {gridNodes}
+        </div>
       </div>
     );
   },
@@ -112,7 +115,7 @@ var GridView = React.createClass({
     this.setState({
       focus: !!(except)
     })
-    this.getDOMNode().scrollTop = 0;
+    //this.getDOMNode().scrollTop = 0;
   },
   setTransitioning: function (bool) {
     this.setState({

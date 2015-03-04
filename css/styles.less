@@ -261,12 +261,18 @@ h2 {
 
 }
 
+
+@grid-height-small: 8vh;
+@grid-height-medium: 30vh;
+@grid-height-large: 60vh;
+
 .gridView {
   .scrollable;
   margin-left: @grid;
   top: 0;
   height: 100vh;
   .gridItem {
+    position: absolute;
     width: 1024 - @grid;
     height: 0;
     transition: transform 0.5s;
@@ -289,7 +295,7 @@ h2 {
       top: 0;
       padding: @innerPadding;
       right: 0;
-      height: 30vh;
+      height: @grid-height-large;
       .cols(4.5);
       position: absolute;
       background: lighten(@aubergine, 45);
@@ -301,9 +307,6 @@ h2 {
 @from : 0;
 @to : 20;
 
-@grid-height-small: 8vh;
-@grid-height-medium: 30vh;
-@grid-height-large: 52vh;
 
 
 
@@ -324,7 +327,15 @@ h2 {
   }
   
   .gridItem.afterFocus:nth-child(@{index}) {
-    transform: translate3d(0, (@index - 1) * (@grid-height-small) + @grid-height-large, 0);
+    transform: translate3d(0, (@index - 2) * (@grid-height-small) + @grid-height-large, 0);
+  }
+    
+  .gridViewWrapper.childnum@{index} {
+    height: (@index) * @grid-height-medium;
+  }
+  
+  .focus .gridViewWrapper.childnum@{index} {
+    height: (@index - 1) * @grid-height-small + @grid-height-large;
   }
   
   /* Interation call and operation */
@@ -368,28 +379,16 @@ h2 {
   .cols(6);
 }
 
-.focus .gridItemWrapper, .focus .gridItem .block {
-  height: 8vh;
-}
-
 .gridItemWrapper {
-  overflow: hidden;
-  height: 30vh;
   box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
+  height: @grid-height-small;
 }
 
-.transitioning .gridItemWrapper {
-  overflow: visible;
-}
-
-.transitioning .gridItem .block {
+.gridItem.focus .gridItemWrapper{
   height: 60vh;
 }
 
-.gridItem.focus .gridItemWrapper, .gridItem.focus .block {
-  height: 60vh;
-}
-
-.author {
-  display: inline;
+.gridViewWrapper {
+  position: relative;
+  overflow: hidden;
 }
