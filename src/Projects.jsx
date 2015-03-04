@@ -1,6 +1,6 @@
 var React = require('react');
 var Text = require('./Text.jsx');
-var GridView = require('./GridView.jsx');
+var CardView = require('./CardView.jsx');
 
 var fillText = 'Vergeblich, großherziger Kublai, werde ich versuchen, dir die Stadt Zaira mit ihren hohen Bastionen zu beschreiben. Ich könnte dir sagen, wie viele Stufen die treppenförmigen Straßen haben, welche Wölbung die Bögen der Arkaden, mit was für';
 
@@ -75,8 +75,7 @@ var Projects = React.createClass({
     };
   },
   render: function() {
-
-        return <GridView projects={projects} ref="gridView"/>
+        return <CardView projects={projects} ref="cardView"/>
   },
   changeTo: function(i) {
     this.setState({

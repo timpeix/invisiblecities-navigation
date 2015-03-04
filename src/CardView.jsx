@@ -18,7 +18,7 @@ var MenuList = React.createClass({
   }
 });
 
-var GridItem = React.createClass({
+var CardItem = React.createClass({
   getInitialState: function() {
     return {
       focus: false
@@ -27,7 +27,7 @@ var GridItem = React.createClass({
   render: function() {
     var cx = React.addons.classSet;
     var classes = cx({
-      'gridItem': true,
+      'cardItem': true,
       'focus': this.state.focus,
       'beforeFocus': this.state.before,
       'afterFocus': this.state.after,
@@ -37,12 +37,10 @@ var GridItem = React.createClass({
     };
     return (
       <div className={classes} style={divStyle} onClick={this.focus}>
-        <div className='gridItemWrapper'>
         <img src={this.props.image}/>
         <div className='block'>
           <div className='author' onClick={this.goToProject}>{this.props.author}</div>
-          <div className='gridText'>{this.props.text}</div>
-        </div>
+          <div className='cardText'>{this.props.text}</div>
         </div>
       </div>
     )
@@ -65,7 +63,7 @@ var GridItem = React.createClass({
 });
 
 
-var GridView = React.createClass({
+var CardView = React.createClass({
   getInitialState: function() {
     return {
       focus: false,
@@ -75,23 +73,23 @@ var GridView = React.createClass({
   render: function() {
     var cx = React.addons.classSet;
     var classes = cx({
-      'gridView': true,
+      'cardView': true,
       'focus': this.state.focus,
       'transitioning': this.state.transitioning
     });
-    var gridNodes = this.props.projects.map(function(project, i) {
+    var cardNodes = this.props.projects.map(function(project, i) {
       return (
-        <GridItem ref={i} key={project.author} parent={this} {...project} />
+        <CardItem ref={i} key={project.author} parent={this} {...project} />
       );
     }, this);
     
-    var numClass = 'gridViewWrapper childnum' + gridNodes.length;
+    var numClass = 'cardViewWrapper childnum' + cardNodes.length;
     
-    this.gridItems = gridNodes;
+    this.cardItems = cardNodes;
     
     return (<div className={classes}>
         <div className={numClass}>
-          {gridNodes}
+          {cardNodes}
         </div>
       </div>
     );
@@ -129,4 +127,4 @@ var GridView = React.createClass({
   }
 })
 
-module.exports = GridView;
+module.exports = CardView;

@@ -262,40 +262,40 @@ h2 {
 }
 
 
-@grid-height-small: 8vh;
-@grid-height-medium: 30vh;
-@grid-height-large: 60vh;
+@card-height-small: 8vh;
+@card-height-medium: 30vh;
+@card-height-large: 60vh;
 
-.gridView {
+.cardView {
   .scrollable;
   margin-left: @grid;
   top: 0;
   height: 100vh;
-  .gridItem {
+  .cardItem {
     position: absolute;
     width: 1024 - @grid;
-    height: 0;
     transition: transform 0.5s;
+    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
+    height: @card-height-small;
+    
+    &.focus {
+      height: 60vh;
+    }
     
     img {
       width: 1024 - 5.5 * @grid;
     }
     
-    .gridText {
-      .right(0);
-      .cols(3);
-      .top(0);
-      position: absolute;
-      padding: @innerPadding;
-      background: @white;
-      display: none;
+    .cardText {
+      // FIXME
+      margin-top: 1em;
     }
     
     .block {
       top: 0;
       padding: @innerPadding;
       right: 0;
-      height: @grid-height-large;
+      height: @card-height-large;
       .cols(4.5);
       position: absolute;
       background: lighten(@aubergine, 45);
@@ -306,54 +306,43 @@ h2 {
     }
   }
   
-  .gridItemWrapper {
-    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
-    height: @grid-height-small;
-  }
-
-  .gridItem.focus .gridItemWrapper{
-    height: 60vh;
-  }
-
-  .gridViewWrapper {
+  .cardViewWrapper {
     position: relative;
     overflow: hidden;
   }
 }
 
+
 /* Define two variables as the loop limits */
 @from : 0;
 @to : 20;
-
-
-
 
 /* Create a Parametric mixin and add a guard operation */
 .loop(@index) when(@index =< @to) {
  
   /* As the mixin is called CSS is outputted */
-  .gridItem:nth-child(@{index}) {
-    transform: translate3d(0, (@index - 1) * @grid-height-medium, 0);
+  .cardItem:nth-child(@{index}) {
+    transform: translate3d(0, (@index - 1) * @card-height-medium, 0);
   }
   
-  .gridItem.beforeFocus:nth-child(@{index}) {
-    transform: translate3d(0, (@index - 1) * (@grid-height-small), 0);
+  .cardItem.beforeFocus:nth-child(@{index}) {
+    transform: translate3d(0, (@index - 1) * (@card-height-small), 0);
   }
  
-  .gridItem.focus:nth-child(@{index}) {
-    transform: translate3d(0, (@index - 1) * (@grid-height-small), 0);
+  .cardItem.focus:nth-child(@{index}) {
+    transform: translate3d(0, (@index - 1) * (@card-height-small), 0);
   }
   
-  .gridItem.afterFocus:nth-child(@{index}) {
-    transform: translate3d(0, (@index - 2) * (@grid-height-small) + @grid-height-large, 0);
+  .cardItem.afterFocus:nth-child(@{index}) {
+    transform: translate3d(0, (@index - 2) * (@card-height-small) + @card-height-large, 0);
   }
     
-  .gridViewWrapper.childnum@{index} {
-    height: (@index) * @grid-height-medium;
+  .cardViewWrapper.childnum@{index} {
+    height: (@index) * @card-height-medium;
   }
   
-  .focus .gridViewWrapper.childnum@{index} {
-    height: (@index - 1) * @grid-height-small + @grid-height-large;
+  .focus .cardViewWrapper.childnum@{index} {
+    height: (@index - 1) * @card-height-small + @card-height-large;
   }
   
   /* Interation call and operation */
