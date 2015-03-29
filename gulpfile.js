@@ -14,10 +14,12 @@ var deploy = require('gulp-gh-pages');
 var uglify = require('gulp-uglify');
 
 // GH pages
-gulp.task('deploy', function () {
-    return gulp.src('./dist/**/*')
-        .pipe(deploy());
+gulp.task('ghpage', function () {
+  return gulp.src('./dist/**/*')
+    .pipe(deploy());
 });
+
+gulp.task('deploy', ['compress', 'ghpage']);
 
 // Hack to enable configurable watchify watching
 var watching = false;
@@ -42,11 +44,11 @@ gulp.task('browserify', watchify(function (watchify) {
     .pipe(connect.reload());
 }));
 
-// gulp.task('compress', function() {
-//   gulp.src('dist/index.js')
-//     .pipe(uglify())
-//     .pipe(gulp.dest('dist'))
-// });
+gulp.task('compress', function() {
+  gulp.src('dist/index.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'))
+});
 
 gulp.task('watchify', ['enable-watch-mode', 'browserify']);
 

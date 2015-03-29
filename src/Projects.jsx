@@ -19,9 +19,8 @@ var projects = [
     city: 'Unknown',
     text: fillText,
     image: './IMG_0013.PNG',
-    landscape: false,
     path: 'lorenz',
-    specialRotate: true
+    specialRotate: false
   },
   {
     author: 'Wiebke Helmchen',
