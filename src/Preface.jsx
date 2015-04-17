@@ -1,6 +1,6 @@
 var React = require('react');
 
-export class Preface extends React.Component {
+export default class Preface extends React.Component {
 
   render() {
     return (<div className="preface">

@@ -67,20 +67,21 @@ var projects = [
   }
 ];
 
-var Projects = React.createClass({
-  getInitialState: function() {
-    return {
+export default class Projects extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       page: this.props.page
     };
-  },
-  render: function() {
-        return <CardView projects={projects} ref="cardView"/>
-  },
-  changeTo: function(i) {
+  }
+
+  render() {
+    return <CardView projects={projects} ref="cardView"/>
+  }
+  
+  changeTo(i) {
     this.setState({
       page: i
     })
   }
-});
-
-module.exports = Projects;
+}
