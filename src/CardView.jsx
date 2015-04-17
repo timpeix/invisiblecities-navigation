@@ -7,22 +7,6 @@ var heights = {
   large: ~~(window.innerHeight * 0.6)
 }
 
-var MenuList = React.createClass({
-  render: function() {
-    var listNodes = this.props.list.map(function(item) {
-      return (
-        <li>{item}</li>
-      );
-    })
-    
-    return (
-      <ul>
-        {listNodes}
-      </ul>
-    );
-  }
-});
-
 var CardItem = React.createClass({
   getInitialState: function() {
     return {
