@@ -1,6 +1,6 @@
 var React = require('react');
-var React = require('react/addons');
 var prefixer = require('react-prefixr');
+var classnames = require('classnames');
 
 var heights = {
   medium:  ~~(window.innerHeight * 0.22),
@@ -14,8 +14,7 @@ var CardItem = React.createClass({
     };
   },
   render: function() {
-    var cx = React.addons.classSet;
-    var classes = cx({
+    var classes = classnames({
       'cardItem': true,
       'focus': this.state.focus,
       'beforeFocus': this.state.before,
@@ -58,8 +57,7 @@ var CardView = React.createClass({
     };
   },
   render: function() {
-    var cx = React.addons.classSet;
-    var classes = cx({
+    var classes = classnames({
       'cardView': true,
       'focus': this.state.focus,
       'transitioning-in': (this.state.transitioning == 'in'),
@@ -131,6 +129,7 @@ var CardView = React.createClass({
     var found = false;
     var last = this.state.focusItem;
     var at = 0;
+    
     // Loop through all children
     for (var i in this.refs) {
       var focusThis = (newItem === parseInt(i));
@@ -140,9 +139,7 @@ var CardView = React.createClass({
         after: (found && refocus),
         focus: focusThis
       });
-      
-      console.log(focusThis, i, this.refs[i].state);
-      
+            
       if (focusThis) {
         found = true;
         at = parseInt(i);
@@ -163,12 +160,6 @@ var CardView = React.createClass({
     var currentPosition = item * heights.medium - scrollTop;
     var newScrollTop = Math.min(maxScroll, Math.max(0, scrollTop + currentPosition - optimalPosition));
     var diff = newScrollTop - scrollTop;
-    // if (!refocus && item == 6) {
-    //   diff = 0;
-    // }
-    //if (!refocus) diff = 1;
-    // Start animation of scroll
-    // console.log(optimalPosition, currentPosition, newScrollTop); 
     
     this.setState({
       focus: refocus,

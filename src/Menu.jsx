@@ -1,9 +1,9 @@
-var React = require('react/addons');
+var React = require('react');
 var Swipeable = require('react-swipeable');
 var Link = require('react-router').Link;
-var strings = require('./strings')
-
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var strings = require('./strings');
+var classnames = require('classnames');
+var TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
 
 class MenuIcon extends React.Component {
   render() {
@@ -18,9 +18,9 @@ class MenuIcon extends React.Component {
 
 class MenuList extends React.Component {
   render() {
-    var listNodes = strings.Menu.map(function(item) {
+    var listNodes = strings.Menu.map(function(item, i) {
       return (
-        <li><Link to={item.destination}>{item.name}</Link></li>
+        <li key={i}><Link to={item.destination}>{item.name}</Link></li>
       );
     });
     
@@ -41,8 +41,7 @@ export default class Menu extends React.Component {
   }
 
   render() {
-    var cx = React.addons.classSet;
-    var classes = cx({
+    var classes = classnames({
       'menu': true,
       'expanded': this.state.expanded,
       'collapsed': !this.state.expanded
