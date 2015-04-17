@@ -7,29 +7,16 @@ var heights = {
   large: ~~(window.innerHeight * 0.6)
 }
 
-var MenuList = React.createClass({
-  render: function() {
-    var listNodes = this.props.list.map(function(item) {
-      return (
-        <li>{item}</li>
-      );
-    })
+class CardItem extends React.Component {
+  constructor(props) {
+    super(props);
     
-    return (
-      <ul>
-        {listNodes}
-      </ul>
-    );
-  }
-});
-
-var CardItem = React.createClass({
-  getInitialState: function() {
-    return {
+    this.state = {
       focus: false
     };
-  },
-  render: function() {
+  }
+  
+  render() {
     var cx = React.addons.classSet;
     var classes = cx({
       'cardItem': true,
@@ -49,14 +36,16 @@ var CardItem = React.createClass({
         </div>
       </div>
     )
-  },
-  goToProject: function(e) {
+  }
+  
+
+  goToProject (e) {
     e.preventDefault();
     e.stopPropagation();
     var p = this.props;
     window.location.href = `thepony://o/${p.path}?landscape=${p.landscape}&specialRotate=${p.specialRotate}`;
-  },
-});
+  }
+};
 
 
 var CardView = React.createClass({
