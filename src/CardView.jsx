@@ -176,9 +176,6 @@ var CardView = React.createClass({
       fakeScroll: diff,
       transitioning: (refocus) ? 'in' : 'out'
     })
-    
-    
-    
   },
   
   resetScroll: function () {

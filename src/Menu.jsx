@@ -49,8 +49,8 @@ export default class Menu extends React.Component {
     });
     
     return (
-      <Swipeable onSwiped={this.handleSwipe}>
-        <div className={classes} onClick={this.toggle} >
+      <Swipeable onSwiped={this.handleSwipe.bind(this)}>
+        <div className={classes} onClick={this.toggle.bind(this)} >
           <MenuIcon />
           <h1 className='appTitle'>{this.props.title}</h1>
           <MenuList list={this.props.list}/>
