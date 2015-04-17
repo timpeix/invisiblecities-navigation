@@ -10,7 +10,7 @@ var projects = [
     author: 'Dom Okah',
     city: 'Perinthia',
     text: fillText,
-    image: './IMG_0012.PNG',
+    image: './IMG_0012.jpg',
     landscape: true,
     path: 'dom'
   },
@@ -18,15 +18,16 @@ var projects = [
     author: 'Lorenz Fidel Huchthausen',
     city: 'Unknown',
     text: fillText,
-    image: './IMG_0013.PNG',
+    image: './lorenz.jpg',
     path: 'lorenz',
+    landscape: false,
     specialRotate: false
   },
   {
     author: 'Wiebke Helmchen',
     city: 'Chloe',
     text: fillText,
-    image: './IMG_0011.PNG',
+    image: './wiebke.jpg',
     landscape: true,
     path: 'wiebke'
   },
@@ -34,16 +35,16 @@ var projects = [
     author: 'Ilya Barret',
     city: 'Perinthia',
     text: fillText,
-    image: './IMG_0016.PNG',
-    landscape: false,
+    image: './ilya.jpg',
+    landscape: true,
     path: 'ilya'
   },
   {
     author: 'Eric Reh',
     city: 'Perinthia',
     text: fillText,
-    image: './eric.png',
-    landscape: true,
+    image: './eric.jpg',
+    landscape: false,
     specialRotate: true,
     path: 'eric'
   },
@@ -51,17 +52,17 @@ var projects = [
     author: 'Gabriela Kapfert',
     city: 'Procopia',
     text: fillText,
-    image: './eric.png',
+    image: './gabi.jpg',
     landscape: true,
-    specialRotate: true,
+    specialRotate: false,
     path: 'gabi'
   },
   {
     author: 'Leo Koppelkamm',
     city: 'Irene',
     text: fillText,
-    image: './eric.png',
-    landscape: true,
+    image: './leo.jpg',
+    landscape: false,
     specialRotate: true,
     path: 'leo'
   }
