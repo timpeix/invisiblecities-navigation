@@ -25473,10 +25473,10 @@ var Menu = (function (_React$Component3) {
 
       return React.createElement(
         Swipeable,
-        { onSwiped: this.handleSwipe },
+        { onSwiped: this.handleSwipe.bind(this) },
         React.createElement(
           'div',
-          { className: classes, onClick: this.toggle },
+          { className: classes, onClick: this.toggle.bind(this) },
           React.createElement(MenuIcon, null),
           React.createElement(
             'h1',
