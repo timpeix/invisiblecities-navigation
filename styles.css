@@ -244,9 +244,15 @@ h2 {
   position: relative;
   overflow: hidden;
 }
-.cardView.transitioning .cardViewWrapper {
-  transition: -webkit-transform 0.5s;
-  transition: transform 0.5s;
+.cardView.transitioning-in .cardViewWrapper {
+  transition: -webkit-transform 0.5s, height 0s;
+  transition: transform 0.5s, height 0s;
+  transition-delay: 0, 0;
+}
+.cardView.transitioning-out .cardViewWrapper {
+  transition: -webkit-transform 0.5s, height 0s;
+  transition: transform 0.5s, height 0s;
+  transition-delay: 0, 0.5s;
 }
 /* Define two variables as the loop limits */
 /* Create a Parametric mixin and add a guard operation */
