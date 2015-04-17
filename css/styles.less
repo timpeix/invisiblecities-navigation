@@ -263,7 +263,7 @@ h2 {
 
 
 @card-height-small: 8vh;
-@card-height-medium: 30vh;
+@card-height-medium: 22vh;
 @card-height-large: 60vh;
 
 .cardView {
@@ -313,6 +313,9 @@ h2 {
   }
 }
 
+.cardView.transitioning .cardViewWrapper {
+  transition: transform 0.5s;
+}
 
 /* Define two variables as the loop limits */
 @from : 0;
@@ -327,15 +330,15 @@ h2 {
   }
   
   .cardItem.beforeFocus:nth-child(@{index}) {
-    transform: translate3d(0, (@index - 1) * (@card-height-small), 0);
+    transform: translate3d(0, (@index - 1) * (@card-height-medium), 0);
   }
  
   .cardItem.focus:nth-child(@{index}) {
-    transform: translate3d(0, (@index - 1) * (@card-height-small), 0);
+    transform: translate3d(0, (@index - 1) * (@card-height-medium), 0);
   }
   
   .cardItem.afterFocus:nth-child(@{index}) {
-    transform: translate3d(0, (@index - 2) * (@card-height-small) + @card-height-large, 0);
+    transform: translate3d(0, (@index - 2) * (@card-height-medium) + @card-height-large, 0);
   }
     
   .cardViewWrapper.childnum@{index} {
@@ -343,7 +346,7 @@ h2 {
   }
   
   .focus .cardViewWrapper.childnum@{index} {
-    height: (@index - 1) * @card-height-small + @card-height-large;
+    height: (@index - 1) * @card-height-medium + @card-height-large;
   }
   
   /* Interation call and operation */

@@ -1,8 +1,8 @@
 var React = require('react');
 
-var Preface = React.createClass({
+export class Preface extends React.Component {
 
-  render: function() {
+  render() {
     return (<div className="preface">
 Vergeblich, großherziger Kublai, werde ich versuchen, dir
 die Stadt Zaira mit ihren hohen Bastionen zu beschreiben. Ich
@@ -31,6 +31,4 @@ und Schlägen.
       </div>
     );
   }
-})
-
-module.exports = Preface;
+}

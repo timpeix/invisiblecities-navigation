@@ -13,13 +13,15 @@ var plumber = require('gulp-plumber');
 var deploy = require('gulp-gh-pages');
 var uglify = require('gulp-uglify');
 
+var target = 'index.js'
+
 // GH pages
 gulp.task('ghpage', function () {
   return gulp.src('./dist/**/*')
     .pipe(deploy());
 });
 
-gulp.task('deploy', ['compress', 'ghpage']);
+gulp.task('deploy', ['less', 'copy', 'setproduction', 'browserify', 'compress']);
 
 // Hack to enable configurable watchify watching
 var watching = false;
@@ -32,20 +34,24 @@ gulp.task('browserify', watchify(function (watchify) {
   return gulp.src('./src/index.jsx')
     .pipe(plumber())
     .pipe(watchify({
-      debug: true,
+      debug: false,
       watch: watching,
       setup: function (bundle) {
-        //bundle.transform(reactify);
         bundle.transform(babelify);
       }
     }))
-    .pipe(rename('index.js'))
+    .pipe(rename(target))
     .pipe(gulp.dest('./dist/'))
     .pipe(connect.reload());
 }));
 
-gulp.task('compress', function() {
-  gulp.src('dist/index.js')
+gulp.task('setproduction', function() {
+  process.env.NODE_ENV = 'production';
+  target = 'index.prod.js'
+});
+
+gulp.task('compress', ['browserify'], function() {
+  gulp.src('dist/index.prod.js')
     .pipe(uglify())
     .pipe(gulp.dest('dist'))
 });

@@ -1,6 +1,11 @@
 var React = require('react');
 var React = require('react/addons');
+var prefixer = require('react-prefixr');
 
+var heights = {
+  medium:  ~~(window.innerHeight * 0.22),
+  large: ~~(window.innerHeight * 0.6)
+}
 
 var MenuList = React.createClass({
   render: function() {
@@ -59,7 +64,8 @@ var CardView = React.createClass({
     return {
       focus: false,
       transitioning: false,
-      focusItem: 0
+      focusItem: 0,
+      fakeScroll: 0
     };
   },
   render: function() {
@@ -76,11 +82,12 @@ var CardView = React.createClass({
     }, this);
     
     var numClass = 'cardViewWrapper childnum' + cardNodes.length;
+    var style = prefixer({'transform': `translate(0, ${-this.state.fakeScroll}px)`});
     
     this.cardItems = cardNodes;
     
     return (<div className={classes} onClick={this.focus}>
-        <div className={numClass}>
+        <div className={numClass} style={style}>
           {cardNodes}
         </div>
       </div>
@@ -89,6 +96,9 @@ var CardView = React.createClass({
   getCorrectTarget: function (x, y) {
     if (this.state.transitioning) {
       console.log("cant handle clicks while animating");
+      setTimeout(() => {
+        this.setTransitioning(false);
+      }, 750);
       return false;
     }
     
@@ -96,11 +106,7 @@ var CardView = React.createClass({
     var scrollPos = this.getDOMNode().scrollTop;
     var targetY = scrollPos + y;
     
-    var heights = {
-      small: ~~(window.innerHeight * 0.08),
-      medium:  ~~(window.innerHeight * 0.3),
-      large: ~~(window.innerHeight * 0.6)
-    }
+
     
     console.log('current focus', this.state.focusItem);
     
@@ -109,12 +115,13 @@ var CardView = React.createClass({
       var i = -1;
       while(curY <= targetY) {
         i++;
-        curY += (this.state.focusItem == i) ? heights.large : heights.small;
+        curY += (this.state.focusItem == i) ? heights.large : heights.medium;
       }
       target = i;
     } else {
       target = Math.floor(targetY / heights.medium)
     }
+    
     console.log('tapped number', target);
     return target;
   },
@@ -152,15 +159,36 @@ var CardView = React.createClass({
         at = parseInt(i);
       };
     }
-     
+    
+    // Scroll to correct position:
+    var node = this.getDOMNode();
+    var scrollTop = node.scrollTop;
+    var maxScroll = node.scrollHeight - node.clientHeight;
+    console.log('max', maxScroll);
+    var optimalPosition = (window.innerHeight - heights.large) / 2;
+    var currentPosition = at * heights.medium - scrollTop;
+    var newScrollTop = Math.min(maxScroll, Math.max(0, scrollTop + currentPosition - optimalPosition));
+    var diff = newScrollTop - scrollTop;
+    
+    // Start animation of scroll
+    console.log(optimalPosition, currentPosition, newScrollTop); 
+    
     this.setState({
       focus: refocus,
-      focusItem: at
+      focusItem: at,
+      fakeScroll: diff
     })
-    
     console.log('new focus item', at);
     console.log(this.state);
     
+  },
+  
+  resetScroll: function () {
+    var node = this.getDOMNode();
+    node.scrollTop += this.state.fakeScroll;
+    this.setState({
+      fakeScroll: 0
+    });
   },
   setTransitioning: function (bool) {
     this.setState({
@@ -169,6 +197,7 @@ var CardView = React.createClass({
   },
   onTransitionEnd: function () {
     this.setTransitioning(false);
+    this.resetScroll();
   },
   componentDidUpdate: function() {
     this.getDOMNode().addEventListener('transitionend', this.onTransitionEnd, false);
