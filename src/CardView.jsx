@@ -7,16 +7,29 @@ var heights = {
   large: ~~(window.innerHeight * 0.6)
 }
 
-class CardItem extends React.Component {
-  constructor(props) {
-    super(props);
+var MenuList = React.createClass({
+  render: function() {
+    var listNodes = this.props.list.map(function(item) {
+      return (
+        <li>{item}</li>
+      );
+    })
     
-    this.state = {
+    return (
+      <ul>
+        {listNodes}
+      </ul>
+    );
+  }
+});
+
+var CardItem = React.createClass({
+  getInitialState: function() {
+    return {
       focus: false
     };
-  }
-  
-  render() {
+  },
+  render: function() {
     var cx = React.addons.classSet;
     var classes = cx({
       'cardItem': true,
@@ -29,23 +42,26 @@ class CardItem extends React.Component {
     };
     return (
       <div className={classes} style={divStyle}>
-        <img src={this.props.image}/>
+        <img src={this.props.image} onClick={this.goToProject}/>
         <div className='block'>
           <div className='author' onClick={this.goToProject}>{this.props.author}</div>
           <div className='cardText'>{this.props.text}</div>
         </div>
       </div>
     )
-  }
-  
-
-  goToProject (e) {
+  },
+  goToProject: function(e) {
+    // Only allow click on image when expanded
+    if (e.target.tagName == 'IMG' && !this.state.focus) {
+      console.log('skipping');
+      return;
+    }
     e.preventDefault();
     e.stopPropagation();
     var p = this.props;
     window.location.href = `thepony://o/${p.path}?landscape=${p.landscape}&specialRotate=${p.specialRotate}`;
-  }
-};
+  },
+});
 
 
 var CardView = React.createClass({

@@ -15,7 +15,7 @@ var projects = [
     path: 'dom'
   },
   {
-    author: 'Lorenz',
+    author: 'Lorenz Fidel Huchthausen',
     city: 'Unknown',
     text: fillText,
     image: './IMG_0013.PNG',
@@ -48,22 +48,22 @@ var projects = [
     path: 'eric'
   },
   {
-    author: 'Eric Zeh',
-    city: 'Perinthia',
+    author: 'Gabriela Kapfert',
+    city: 'Procopia',
     text: fillText,
     image: './eric.png',
     landscape: true,
     specialRotate: true,
-    path: 'eric'
+    path: 'gabi'
   },
   {
-    author: 'Eric Meh',
-    city: 'Perinthia',
+    author: 'Leo Koppelkamm',
+    city: 'Irene',
     text: fillText,
     image: './eric.png',
     landscape: true,
     specialRotate: true,
-    path: 'eric'
+    path: 'leo'
   }
 ];
 

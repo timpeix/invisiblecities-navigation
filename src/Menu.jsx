@@ -33,7 +33,6 @@ class MenuList extends React.Component {
 };
 
 export default class Menu extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = {
