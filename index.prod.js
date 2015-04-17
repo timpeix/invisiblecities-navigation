@@ -30,8 +30,7 @@ var App = React.createClass({
   },
   getTopHandlerKey: function getTopHandlerKey() {
     var childDepth = 1;
-    var childName = this.getRoutes()[childDepth].name;
-    console.log(childName);
+    var childName = this.context.router.getCurrentRoutes()[childDepth].name;
     return childName;
   } });
 
@@ -24915,28 +24914,6 @@ var heights = {
   large: ~ ~(window.innerHeight * 0.6)
 };
 
-var lastCall = 0;
-
-var MenuList = React.createClass({
-  displayName: 'MenuList',
-
-  render: function render() {
-    var listNodes = this.props.list.map(function (item) {
-      return React.createElement(
-        'li',
-        null,
-        item
-      );
-    });
-
-    return React.createElement(
-      'ul',
-      null,
-      listNodes
-    );
-  }
-});
-
 var CardItem = React.createClass({
   displayName: 'CardItem',
 
@@ -24958,7 +24935,7 @@ var CardItem = React.createClass({
     return React.createElement(
       'div',
       { className: classes, style: divStyle },
-      React.createElement('img', { src: this.props.image }),
+      React.createElement('img', { src: this.props.image, onClick: this.goToProject }),
       React.createElement(
         'div',
         { className: 'block' },
@@ -24976,6 +24953,11 @@ var CardItem = React.createClass({
     );
   },
   goToProject: function goToProject(e) {
+    // Only allow click on image when expanded
+    if (e.target.tagName == 'IMG' && !this.state.focus) {
+      console.log('skipping');
+      return;
+    }
     e.preventDefault();
     e.stopPropagation();
     var p = this.props;
@@ -25064,8 +25046,6 @@ var CardView = React.createClass({
   },
 
   removeAllFocus: function removeAllFocus(_x, newItem) {
-    var _this2 = this;
-
     var refocus = arguments[0] === undefined ? false : arguments[0];
 
     console.log('refocus:', refocus, 'newly focussed:', newItem);
@@ -25117,27 +25097,6 @@ var CardView = React.createClass({
       fakeScroll: diff,
       transitioning: refocus ? 'in' : 'out'
     });
-
-    // var startTime = Date.now();
-    // var animateScroll = () => {
-    //   var now = Date().now()
-    //   var delta = Math.max(500, now - startTime);
-    //   var scroll = scrollTop + diff/500 * delta;
-    //  
-    //   this.getDOMNode().scrollTop = scroll;
-    //  
-    //   if (delta < 500) {
-    //     requestAnimationFrame(animateScroll);
-    //   }
-    // }
-    //
-    // animateScroll();
-
-    console.log('new focus item', at);
-
-    setTimeout(function () {
-      console.log(refocus, _this2.state);
-    }, 200);
   },
 
   resetScroll: function resetScroll() {
@@ -25154,29 +25113,18 @@ var CardView = React.createClass({
     });
   },
   onTransitionEnd: function onTransitionEnd() {
-    //this.setTransitioning(false);
     console.log('reset scroll');
     this.resetScroll();
   },
   componentDidUpdate: function componentDidUpdate() {
-    var _this3 = this;
-
-    var rand = Math.random();
-    var endTransition = function endTransition() {
-      var diff = Date.now() - lastCall;
-      if (diff > 500) {
-        _this3.onTransitionEnd();
-        lastCall = Date.now();
-      } else {
-        console.log('skipping one too close', rand);
-      }
-    };
-
     this.getDOMNode().addEventListener('transitionend', this.onTransitionEnd, false);
   },
   componentDidMount: function componentDidMount() {
+    var _this2 = this;
+
     this.getDOMNode().addEventListener('scroll', function (e) {
       console.log(e);
+      console.log('scrolltop', _this2.getDOMNode().scrollTop);
     }, false);
   }
 });
@@ -25186,6 +25134,15 @@ module.exports = CardView;
 },{"react":217,"react-prefixr":3,"react/addons":45}],219:[function(require,module,exports){
 'use strict';
 
+var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var React = require('react');
 var Menu = require('./Menu.jsx');
 var Router = require('react-router');
@@ -25195,20 +25152,34 @@ var strings = require('./strings');
 // TODO put in json, use in MENU
 var menuItems = ['Vorwort', 'Interaktive Projekte', 'Animation', 'Nachwort'];
 
-var Content = React.createClass({
-  displayName: 'Content',
+var Content = (function (_React$Component) {
+  function Content() {
+    _classCallCheck(this, Content);
 
-  render: function render() {
-    return React.createElement(
-      'div',
-      null,
-      React.createElement(Menu, { list: menuItems, title: strings.App.title }),
-      React.createElement(RouteHandler, null)
-    );
+    if (_React$Component != null) {
+      _React$Component.apply(this, arguments);
+    }
   }
-});
 
-module.exports = Content;
+  _inherits(Content, _React$Component);
+
+  _createClass(Content, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(Menu, { list: menuItems, title: strings.App.title }),
+        React.createElement(RouteHandler, null)
+      );
+    }
+  }]);
+
+  return Content;
+})(React.Component);
+
+exports['default'] = Content;
+module.exports = exports['default'];
 
 },{"./Menu.jsx":221,"./strings":225,"react":217,"react-router":28}],220:[function(require,module,exports){
 'use strict';
@@ -25261,6 +25232,17 @@ module.exports = Cover;
 },{"./strings":225,"react":217,"react-router":28,"react-swipeable":43}],221:[function(require,module,exports){
 'use strict';
 
+var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var React = require('react/addons');
 var Swipeable = require('react-swipeable');
 var Link = require('react-router').Link;
@@ -25268,95 +25250,138 @@ var strings = require('./strings');
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-var MenuIcon = React.createClass({
-  displayName: 'MenuIcon',
+var MenuIcon = (function (_React$Component) {
+  function MenuIcon() {
+    _classCallCheck(this, MenuIcon);
 
-  render: function render() {
-    return React.createElement(
-      'div',
-      { className: 'menuIcon' },
-      React.createElement('div', { className: 'icon' }),
-      React.createElement(
-        'span',
-        { className: 'text' },
-        'Menu'
-      )
-    );
+    if (_React$Component != null) {
+      _React$Component.apply(this, arguments);
+    }
   }
-});
 
-var MenuList = React.createClass({
-  displayName: 'MenuList',
+  _inherits(MenuIcon, _React$Component);
 
-  render: function render() {
-    var listNodes = strings.Menu.map(function (item) {
+  _createClass(MenuIcon, [{
+    key: 'render',
+    value: function render() {
       return React.createElement(
-        'li',
-        null,
+        'div',
+        { className: 'menuIcon' },
+        React.createElement('div', { className: 'icon' }),
         React.createElement(
-          Link,
-          { to: item.destination },
-          item.name
+          'span',
+          { className: 'text' },
+          'Menu'
         )
       );
-    });
+    }
+  }]);
 
-    return React.createElement(
-      'ul',
-      null,
-      listNodes
-    );
+  return MenuIcon;
+})(React.Component);
+
+var MenuList = (function (_React$Component2) {
+  function MenuList() {
+    _classCallCheck(this, MenuList);
+
+    if (_React$Component2 != null) {
+      _React$Component2.apply(this, arguments);
+    }
   }
-});
 
-var Menu = React.createClass({
-  displayName: 'Menu',
+  _inherits(MenuList, _React$Component2);
 
-  getInitialState: function getInitialState() {
-    return {
+  _createClass(MenuList, [{
+    key: 'render',
+    value: function render() {
+      var listNodes = strings.Menu.map(function (item) {
+        return React.createElement(
+          'li',
+          null,
+          React.createElement(
+            Link,
+            { to: item.destination },
+            item.name
+          )
+        );
+      });
+
+      return React.createElement(
+        'ul',
+        null,
+        listNodes
+      );
+    }
+  }]);
+
+  return MenuList;
+})(React.Component);
+
+;
+
+var Menu = (function (_React$Component3) {
+  function Menu(props) {
+    _classCallCheck(this, Menu);
+
+    _get(Object.getPrototypeOf(Menu.prototype), 'constructor', this).call(this, props);
+    this.state = {
       expanded: false
     };
-  },
-  render: function render() {
-    var cx = React.addons.classSet;
-    var classes = cx({
-      menu: true,
-      expanded: this.state.expanded,
-      collapsed: !this.state.expanded
-    });
-
-    return React.createElement(
-      Swipeable,
-      { onSwiped: this.handleSwipe },
-      React.createElement(
-        'div',
-        { className: classes, onClick: this.toggle },
-        React.createElement(MenuIcon, null),
-        React.createElement(
-          'h1',
-          { className: 'appTitle' },
-          this.props.title
-        ),
-        React.createElement(MenuList, { list: this.props.list })
-      )
-    );
-  },
-  handleSwipe: function handleSwipe(e, x, y, flick) {
-    if (flick && Math.abs(y) < Math.abs(x)) {
-      this.setState({
-        expanded: x < 0
-      });
-      e.stopPropagation();
-    }
-  },
-  toggle: function toggle() {
-    this.setState({
-      expanded: !this.state.expanded
-    });
   }
-});
 
-module.exports = Menu;
+  _inherits(Menu, _React$Component3);
+
+  _createClass(Menu, [{
+    key: 'render',
+    value: function render() {
+      var cx = React.addons.classSet;
+      var classes = cx({
+        menu: true,
+        expanded: this.state.expanded,
+        collapsed: !this.state.expanded
+      });
+
+      return React.createElement(
+        Swipeable,
+        { onSwiped: this.handleSwipe },
+        React.createElement(
+          'div',
+          { className: classes, onClick: this.toggle },
+          React.createElement(MenuIcon, null),
+          React.createElement(
+            'h1',
+            { className: 'appTitle' },
+            this.props.title
+          ),
+          React.createElement(MenuList, { list: this.props.list })
+        )
+      );
+    }
+  }, {
+    key: 'handleSwipe',
+    value: function handleSwipe(e, x, y, flick) {
+      if (flick && Math.abs(y) < Math.abs(x)) {
+        this.setState({
+          expanded: x < 0
+        });
+        e.stopPropagation();
+      }
+    }
+  }, {
+    key: 'toggle',
+    value: function toggle() {
+      this.setState({
+        expanded: !this.state.expanded
+      });
+    }
+  }]);
+
+  return Menu;
+})(React.Component);
+
+exports['default'] = Menu;
+;
+module.exports = exports['default'];
 
 },{"./strings":225,"react-router":28,"react-swipeable":43,"react/addons":45}],222:[function(require,module,exports){
 "use strict";
@@ -25397,11 +25422,23 @@ var Preface = (function (_React$Component) {
   return Preface;
 })(React.Component);
 
-exports.Preface = Preface;
+exports["default"] = Preface;
+module.exports = exports["default"];
 
 },{"react":217}],223:[function(require,module,exports){
 'use strict';
 
+var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var React = require('react');
 var Text = require('./Text.jsx');
 var CardView = require('./CardView.jsx');
@@ -25412,75 +25449,88 @@ var projects = [{
   author: 'Dom Okah',
   city: 'Perinthia',
   text: fillText,
-  image: './IMG_0012.PNG',
+  image: './dom.jpg',
   landscape: true,
   path: 'dom'
 }, {
-  author: 'Lorenz',
+  author: 'Lorenz Fidel Huchthausen',
   city: 'Unknown',
   text: fillText,
-  image: './IMG_0013.PNG',
+  image: './lorenz.jpg',
   path: 'lorenz',
+  landscape: false,
   specialRotate: false
 }, {
   author: 'Wiebke Helmchen',
   city: 'Chloe',
   text: fillText,
-  image: './IMG_0011.PNG',
+  image: './wiebke.jpg',
   landscape: true,
   path: 'wiebke'
 }, {
   author: 'Ilya Barret',
   city: 'Perinthia',
   text: fillText,
-  image: './IMG_0016.PNG',
-  landscape: false,
+  image: './ilya.jpg',
+  landscape: true,
   path: 'ilya'
 }, {
   author: 'Eric Reh',
   city: 'Perinthia',
   text: fillText,
-  image: './eric.png',
-  landscape: true,
+  image: './eric.jpg',
+  landscape: false,
   specialRotate: true,
   path: 'eric'
 }, {
-  author: 'Eric Zeh',
-  city: 'Perinthia',
+  author: 'Gabriela Kapfert',
+  city: 'Procopia',
   text: fillText,
-  image: './eric.png',
+  image: './gabi.jpg',
   landscape: true,
-  specialRotate: true,
-  path: 'eric'
+  specialRotate: false,
+  path: 'gabi'
 }, {
-  author: 'Eric Meh',
-  city: 'Perinthia',
+  author: 'Leo Koppelkamm',
+  city: 'Irene',
   text: fillText,
-  image: './eric.png',
-  landscape: true,
+  image: './leo.jpg',
+  landscape: false,
   specialRotate: true,
-  path: 'eric'
+  path: 'leo'
 }];
 
-var Projects = React.createClass({
-  displayName: 'Projects',
+var Projects = (function (_React$Component) {
+  function Projects(props) {
+    _classCallCheck(this, Projects);
 
-  getInitialState: function getInitialState() {
-    return {
+    _get(Object.getPrototypeOf(Projects.prototype), 'constructor', this).call(this, props);
+    this.state = {
       page: this.props.page
     };
-  },
-  render: function render() {
-    return React.createElement(CardView, { projects: projects, ref: 'cardView' });
-  },
-  changeTo: function changeTo(i) {
-    this.setState({
-      page: i
-    });
   }
-});
 
-module.exports = Projects;
+  _inherits(Projects, _React$Component);
+
+  _createClass(Projects, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(CardView, { projects: projects, ref: 'cardView' });
+    }
+  }, {
+    key: 'changeTo',
+    value: function changeTo(i) {
+      this.setState({
+        page: i
+      });
+    }
+  }]);
+
+  return Projects;
+})(React.Component);
+
+exports['default'] = Projects;
+module.exports = exports['default'];
 
 },{"./CardView.jsx":218,"./Text.jsx":224,"react":217}],224:[function(require,module,exports){
 "use strict";
