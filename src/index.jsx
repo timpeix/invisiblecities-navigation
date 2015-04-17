@@ -26,8 +26,7 @@ var App = React.createClass({
   },
   getTopHandlerKey: function () {
     var childDepth = 1;
-    var childName = this.getRoutes()[childDepth].name;
-    console.log(childName);
+    var childName = this.context.router.getCurrentRoutes()[childDepth].name;
     return childName;
   },
 });
