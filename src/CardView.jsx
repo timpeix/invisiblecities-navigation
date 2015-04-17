@@ -73,7 +73,8 @@ var CardView = React.createClass({
     var classes = cx({
       'cardView': true,
       'focus': this.state.focus,
-      'transitioning': this.state.transitioning
+      'transitioning-in': (this.state.transitioning == 'in'),
+      'transitioning-out': (this.state.transitioning == 'out')
     });
     var cardNodes = this.props.projects.map(function(project, i) {
       return (
@@ -130,17 +131,16 @@ var CardView = React.createClass({
     var target = this.getCorrectTarget(e.clientX, e.clientY);
     
     if (this.state.focus && target == this.state.focusItem) {
-      this.removeAllFocus(false);
+      this.removeAllFocus();
     } else {
       this.removeAllFocus(true, target);
     }
-    
-    this.setTransitioning(true);
   },
   
-  removeAllFocus: function(refocus, newItem) {
+  removeAllFocus: function(refocus = false, newItem) {
     console.log('refocus:', refocus, 'newly focussed:', newItem);
     var found = false;
+    var last = this.state.focusItem;
     var at = 0;
     // Loop through all children
     for (var i in this.refs) {
@@ -161,25 +161,55 @@ var CardView = React.createClass({
     }
     
     // Scroll to correct position:
+    var item = (refocus) ? at : last;
     var node = this.getDOMNode();
     var scrollTop = node.scrollTop;
-    var maxScroll = node.scrollHeight - node.clientHeight;
+    var itemLength = Object.keys(this.refs).length;
+    var contentHeight = (refocus) ? (itemLength - 1) * heights.medium + heights.large : itemLength * heights.medium;
+    console.log('calculated height:', contentHeight, node.scrollHeight);
+    var maxScroll = contentHeight - node.clientHeight;
     console.log('max', maxScroll);
-    var optimalPosition = (window.innerHeight - heights.large) / 2;
-    var currentPosition = at * heights.medium - scrollTop;
+    var margin = (refocus) ? window.innerHeight - heights.large : window.innerHeight - heights.medium;
+    var optimalPosition = margin / 2;
+    var currentPosition = item * heights.medium - scrollTop;
     var newScrollTop = Math.min(maxScroll, Math.max(0, scrollTop + currentPosition - optimalPosition));
     var diff = newScrollTop - scrollTop;
-    
+    // if (!refocus && item == 6) {
+    //   diff = 0;
+    // }
+    //if (!refocus) diff = 1;
     // Start animation of scroll
-    console.log(optimalPosition, currentPosition, newScrollTop); 
+    // console.log(optimalPosition, currentPosition, newScrollTop); 
     
     this.setState({
       focus: refocus,
       focusItem: at,
-      fakeScroll: diff
+      fakeScroll: diff,
+      transitioning: (refocus) ? 'in' : 'out'
     })
+    
+    // var startTime = Date.now();
+    // var animateScroll = () => {
+    //   var now = Date().now()
+    //   var delta = Math.max(500, now - startTime);
+    //   var scroll = scrollTop + diff/500 * delta;
+    //   
+    //   this.getDOMNode().scrollTop = scroll;
+    //   
+    //   if (delta < 500) {
+    //     requestAnimationFrame(animateScroll);
+    //   }
+    // }
+    // 
+    // animateScroll();
+
+    
     console.log('new focus item', at);
-    console.log(this.state);
+    
+    setTimeout(() =>{
+      console.log(refocus, this.state);
+    }, 200);
+    
     
   },
   
