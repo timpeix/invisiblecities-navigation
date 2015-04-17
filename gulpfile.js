@@ -16,12 +16,12 @@ var uglify = require('gulp-uglify');
 var target = 'index.js'
 
 // GH pages
-gulp.task('ghpage', function () {
+gulp.task('ghpages', ['less', 'copy', 'setproduction', 'browserify', 'compress'], function () {
   return gulp.src('./dist/**/*')
     .pipe(deploy());
 });
 
-gulp.task('deploy', ['less', 'copy', 'setproduction', 'browserify', 'compress']);
+gulp.task('deploy', ['less', 'copy', 'setproduction', 'browserify', 'compress', 'ghpages']);
 
 // Hack to enable configurable watchify watching
 var watching = false;
@@ -88,7 +88,7 @@ gulp.task('webserver', function() {
 
 
 gulp.task('copy', function() {
-  gulp.src(['index.html', 'assets/*', 'content/*'])
+  gulp.src(['index.html', 'index.prod.html', 'assets/*', 'content/*'])
   .pipe(gulp.dest('./dist'))
   .pipe(connect.reload());
 });
@@ -96,6 +96,7 @@ gulp.task('copy', function() {
 gulp.task('watch', function () {
   gulp.watch('css/*.less', ['less']);
   gulp.watch('index.html', ['copy']);
+  gulp.watch('index.prod.html', ['copy']);
 });
 
 // gulp.task('develop', function () {
