@@ -188,27 +188,6 @@ var CardView = React.createClass({
       transitioning: (refocus) ? 'in' : 'out'
     })
     
-    // var startTime = Date.now();
-    // var animateScroll = () => {
-    //   var now = Date().now()
-    //   var delta = Math.max(500, now - startTime);
-    //   var scroll = scrollTop + diff/500 * delta;
-    //   
-    //   this.getDOMNode().scrollTop = scroll;
-    //   
-    //   if (delta < 500) {
-    //     requestAnimationFrame(animateScroll);
-    //   }
-    // }
-    // 
-    // animateScroll();
-
-    
-    console.log('new focus item', at);
-    
-    setTimeout(() =>{
-      console.log(refocus, this.state);
-    }, 200);
     
     
   },
@@ -217,7 +196,8 @@ var CardView = React.createClass({
     var node = this.getDOMNode();
     node.scrollTop += this.state.fakeScroll;
     this.setState({
-      fakeScroll: 0
+      fakeScroll: 0,
+      transitioning: false
     });
   },
   setTransitioning: function (bool) {
@@ -226,11 +206,17 @@ var CardView = React.createClass({
     })
   },
   onTransitionEnd: function () {
-    this.setTransitioning(false);
+    console.log('reset scroll');
     this.resetScroll();
   },
   componentDidUpdate: function() {
     this.getDOMNode().addEventListener('transitionend', this.onTransitionEnd, false);
+  },
+  componentDidMount: function () {
+    this.getDOMNode().addEventListener('scroll',  (e) => {
+      console.log(e);
+      console.log('scrolltop', this.getDOMNode().scrollTop);
+    }, false);
   }
 })
 
