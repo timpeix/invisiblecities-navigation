@@ -5,8 +5,8 @@ var strings = require('./strings')
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-var MenuIcon = React.createClass({
-  render: function() {
+class MenuIcon extends React.Component {
+  render() {
     return (
       <div className='menuIcon'>
         <div className='icon'></div>
@@ -14,10 +14,10 @@ var MenuIcon = React.createClass({
       </div>
     );
   }
-});
+}
 
-var MenuList = React.createClass({
-  render: function() {
+class MenuList extends React.Component {
+  render() {
     var listNodes = strings.Menu.map(function(item) {
       return (
         <li><Link to={item.destination}>{item.name}</Link></li>
@@ -30,15 +30,18 @@ var MenuList = React.createClass({
       </ul>
     );
   }
-});
+};
 
-var Menu = React.createClass({
-  getInitialState: function() {
-    return {
+export default class Menu extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
       expanded: false
     };
-  },
-  render: function() {
+  }
+
+  render() {
     var cx = React.addons.classSet;
     var classes = cx({
       'menu': true,
@@ -55,20 +58,20 @@ var Menu = React.createClass({
         </div>
       </Swipeable>
     );
-  },
-  handleSwipe: function (e, x, y, flick) {
+  }
+  
+  handleSwipe (e, x, y, flick) {
     if (flick && Math.abs(y) < Math.abs(x)) {
       this.setState({
         expanded: (x < 0)
       });
       e.stopPropagation();
     }
-  },
-  toggle: function() {
+  }
+  
+  toggle() {
     this.setState({
       expanded: !this.state.expanded
     });
   }
-});
-
-module.exports = Menu;
+};
