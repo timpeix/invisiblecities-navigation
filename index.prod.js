@@ -24915,6 +24915,8 @@ var heights = {
   large: ~ ~(window.innerHeight * 0.6)
 };
 
+var lastCall = 0;
+
 var MenuList = React.createClass({
   displayName: 'MenuList',
 
@@ -25142,7 +25144,8 @@ var CardView = React.createClass({
     var node = this.getDOMNode();
     node.scrollTop += this.state.fakeScroll;
     this.setState({
-      fakeScroll: 0
+      fakeScroll: 0,
+      transitioning: false
     });
   },
   setTransitioning: function setTransitioning(bool) {
@@ -25151,11 +25154,30 @@ var CardView = React.createClass({
     });
   },
   onTransitionEnd: function onTransitionEnd() {
-    this.setTransitioning(false);
+    //this.setTransitioning(false);
+    console.log('reset scroll');
     this.resetScroll();
   },
   componentDidUpdate: function componentDidUpdate() {
+    var _this3 = this;
+
+    var rand = Math.random();
+    var endTransition = function endTransition() {
+      var diff = Date.now() - lastCall;
+      if (diff > 500) {
+        _this3.onTransitionEnd();
+        lastCall = Date.now();
+      } else {
+        console.log('skipping one too close', rand);
+      }
+    };
+
     this.getDOMNode().addEventListener('transitionend', this.onTransitionEnd, false);
+  },
+  componentDidMount: function componentDidMount() {
+    this.getDOMNode().addEventListener('scroll', function (e) {
+      console.log(e);
+    }, false);
   }
 });
 
