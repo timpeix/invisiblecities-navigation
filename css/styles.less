@@ -362,13 +362,13 @@ h2 {
 /* the mixin is called, css outputted and iterations called */
 .loop(@from);
 
-
 .noTranslate{
   transform: translate3d(0,0, 0);
   transition: transform 2s ;
 }
 
 .horizontal-leave {
+  z-index:10;
   display: block;
   position: absolute;
   transform: translate3d(0,0, 0);
@@ -377,16 +377,6 @@ h2 {
 
 .horizontal-leave-active {
   transform: translate3d(0, -100vh, 0);
-}
-
-.horizontal-enter {
-  display: block;
-  transition: transform 0.5s;
-  transform: translate3d(0, 100vh, 0);
-}
-
-.horizontal-enter-active {
-  transform: translate3d(0, 0vh, 0);
 }
 
 .preface {
