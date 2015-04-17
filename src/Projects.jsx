@@ -10,7 +10,7 @@ var projects = [
     author: 'Dom Okah',
     city: 'Perinthia',
     text: fillText,
-    image: './IMG_0012.jpg',
+    image: './dom.jpg',
     landscape: true,
     path: 'dom'
   },
